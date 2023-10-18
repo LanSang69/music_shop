@@ -16,26 +16,25 @@ if ($connection) {
     $celular = $_POST['celular'];
     $telefono = $_POST['telefono'];
 
-    $query = "INSERT INTO cliente (nombre, apellido, rfc, domicilio_f, correo, celular, telefono)
-              VALUES ('$nombre', '$apellido', $rfc, '$domicilio_f', '$correo', '$celular', '$telefono')";
+    $query = "UPDATE SET nombre = '$nombre', apellido = '$apellido', domicilio_f = '$domicilio_f', correo = '$correo', celular = '$celular', telefono = '$telefono' WHERE rfc = '$rfc'";
 
     $result = pg_query($connection, $query);
 
     if ($result) {
         $response = array(
             'success' => true,
-            'message' => 'Registro insertado correctamente.'
+            'message' => 'Registro actualizado correctamente.'
         );
     } else {
         $response = array(
             'success' => false,
-            'message' => 'Error al insertar el registro: ' . pg_last_error()
+            'message' => 'Error al actualizar el registro: ' . pg_last_error()
         );
     }
 } else {
     $response = array(
         'success' => false,
-        'message' => 'Failed to connect to PostgreSQL.'
+        'message' => 'Falló la conexión con postgreSQL.'
     );
 }
 

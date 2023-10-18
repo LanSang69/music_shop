@@ -4,19 +4,37 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Borrar cliente</title>
+    <title>La Nota Mala | Modificación</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="css/styles_login_register.css">
+    <link rel="stylesheet" href="../../css/styles_login_register.css">
 </head>
 <body>
     <a class="button" href="plataforma.html">Volver</a>
     <div class="form_registro">
-        <h1>Borrado</h1>
+        <h1>Updates</h1>
         <form id="myForm">
             <div class="user">
                 <input type="text" name="rfc" placeholder="RFC" required>
             </div>
-            <input type="submit" value="Eliminar">
+            <div class="user">
+                <input type="text" name="nombre" placeholder="Nombre" required>
+            </div>
+	        <div class="user">
+                <input type="text" name="apellido" placeholder="Apellidos" required>
+            </div>
+            <div class="user">
+                <input type="text" name="domicilio_f" placeholder="Domicilio fiscal" required>
+            </div>
+            <div class="user">
+                <input type="email" name="correo" placeholder="Correo" required>
+            </div>
+            <div class="user">
+                <input type="text" name="celular" placeholder="Celular" required>
+            </div>
+            <div class="user">
+                <input type ="text" name="telefono" placeholder="Teléfono fijo">
+            </div>
+            <input type="submit" value="Actualizar">
         </form>
     </div>
 
@@ -29,7 +47,7 @@
                 var formData = $(this).serialize(); // Serializar datos del formulario
                 $.ajax({
                     type: 'POST',
-                    url: 'php/erase.php',
+                    url: '../../php/modify.php',
                     data: formData,
                     dataType: 'json', // Espera una respuesta JSON
                     success: function(response) {
