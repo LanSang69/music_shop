@@ -16,7 +16,7 @@ if ($connection) {
     $celular = $_POST['celular'];
     $telefono = $_POST['telefono'];
 
-    $query = "UPDATE SET nombre = '$nombre', apellido = '$apellido', domicilio_f = '$domicilio_f', correo = '$correo', celular = '$celular', telefono = '$telefono' WHERE rfc = '$rfc'";
+    $query = "UPDATE cliente SET nombre = '$nombre', apellido = '$apellido', domicilio_f = '$domicilio_f', correo = '$correo', celular = '$celular', telefono = '$telefono' WHERE rfc = '$rfc'";
 
     $result = pg_query($connection, $query);
 
