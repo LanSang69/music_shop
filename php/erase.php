@@ -10,29 +10,39 @@ $connection = pg_connect("host=$host port=$port dbname=$dbname user=$user passwo
 if ($connection) {
     $rfc = $_POST['rfc'];
 
-    $query = "DELETE FROM cliente WHERE rfc = '$rfc'";
+    // Check if the RFC exists in the database
+    $checkQuery = "SELECT COUNT(*) FROM cliente WHERE rfc = '$rfc'";
+    $checkResult = pg_query($connection, $checkQuery);
+    $rowCount = pg_fetch_result($checkResult, 0);
 
-    $result = pg_query($connection, $query);
+    if ($rowCount > 0) {
+        // The record exists, proceed with the delete operation
+        $deleteQuery = "DELETE FROM cliente WHERE rfc = '$rfc'";
+        $deleteResult = pg_query($connection, $deleteQuery);
 
-    if ($result) {
-        $response = array(
-            'success' => true,
-            'message' => 'Borrado éxitoso.'
-        );
+        if ($deleteResult) {
+            $response = array(
+                'success' => true,
+                'message' => 'Borrado éxitoso.'
+            );
+        } else {
+            $response = array(
+                'success' => false,
+                'message' => 'Error al borrar el registro: ' . pg_last_error()
+            );
+        }
     } else {
         $response = array(
             'success' => false,
-            'message' => 'Error: ' . pg_last_error()
+            'message' => 'RFC no encontrado en la base de datos.'
         );
     }
 } else {
     $response = array(
         'success' => false,
         'message' => 'Falló la conexión con PSQL.'
-    );
-}
+    }
 
-header('Content-Type: application/json'); // Establece el encabezado JSON
-echo json_encode($response); // Devuelve la respuesta JSON
+header('Content-Type: application/json');
+echo json_encode($response);
 ?>
-
