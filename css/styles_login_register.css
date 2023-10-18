@@ -6,6 +6,18 @@ body{
     height: 100vh;
 }
 
+.button{
+    position: absolute;
+    margin: 10px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
 .form_login{
     position: absolute;
     top: 50%;
@@ -117,25 +129,10 @@ input[type="submit"]{
     color: white;
     cursor: pointer;
     outline: none;
+    margin-bottom: 10px;
 }
 
 input[type="submit"]:hover{
     border-color: #7270ec;
     transition: .5s;
-}
-
-.registrarse{
-    margin: 30px 0;
-    text-align: center;
-    font-size: 16px;
-    color: black;
-}
-
-.registrarse a{
-    color: blue;
-    text-decoration: none;
-}
-
-.registrarse a:hover{
-    text-decoration: underline;
 }
