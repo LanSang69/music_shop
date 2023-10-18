@@ -40,8 +40,9 @@ if ($connection) {
 } else {
     $response = array(
         'success' => false,
-        'message' => 'Falló la conexión con PSQL.'
-    }
+        'message' => 'RFC no encontrado en la base de datos.'
+    );
+}    
 
 header('Content-Type: application/json');
 echo json_encode($response);
