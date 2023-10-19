@@ -11,7 +11,7 @@ if ($connection) {
     $rfc = $_POST['rfc'];
 
     // Check if the RFC exists in the database
-    $checkQuery = "SELECT COUNT(*) FROM cliente WHERE rfc = '$rfc'";
+    $checkQuery = "SELECT COUNT(*) FROM empleados WHERE rfc = '$rfc'";
     $checkResult = pg_query($connection, $checkQuery);
     $rowCount = pg_fetch_result($checkResult, 0);
 
