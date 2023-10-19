@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Parámetros de conexión a la base de datos
     $host = "localhost";
     $port = "5432";
-    $dbname = "your_database_name";
+    $dbname = "music_shop";
 
     // Intentar conectar a la base de datos
     $connection = pg_connect("host=$host port=$port dbname=$dbname user=$username password=$password");
