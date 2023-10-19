@@ -47,7 +47,7 @@
                 var formData = $(this).serialize(); // Serializar datos del formulario
                 $.ajax({
                     type: 'POST',
-                    url: '../../php/modify.php',
+                    url: '../../php/dueño/modify_e.php',
                     data: formData,
                     dataType: 'json', // Espera una respuesta JSON
                     success: function(response) {
