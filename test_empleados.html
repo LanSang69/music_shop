@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Web Page</title>
+</head>
+<body>
+    <!-- Include jQuery for AJAX (you can include it from a CDN) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <div id="result">
+        <!-- The content from the PHP script will be loaded here -->
+    </div>
+
+    <script>
+        // Use AJAX to load data from the first PHP script
+        $.ajax({
+            url: 'test2.php',
+            type: 'GET',
+            success: function(response) {
+                $('#result').html(response);
+            },
+            error: function() {
+                $('#result').html('An error occurred while loading the first PHP script.');
+            }
+        });
+    </script>
+
+</body>
+</html>
+
+
