@@ -14,9 +14,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($connection) {
             if ($username === "admin") {
-                header("Location: dueño/plataforma_admin.html");
+                header("Location: ../src/dueño/plataforma_admin.html");
             } elseif ($username === "empleado") {
-                header("Location: empleados/plataforma.html");
+                header("Location: ../src/empleados/plataforma.html");
             }
             pg_close($connection);
             exit;
