@@ -10,7 +10,7 @@ $connection = pg_connect("host=$host port=$port dbname=$dbname user=$user passwo
 if ($connection) {
     $rfc = $_POST['rfc']; // Get RFC from the AJAX request
 
-    $query = "SELECT * FROM empleados WHERE rfc = $1";
+    $query = "SELECT * FROM empleados WHERE rfc = '$rfc'";
     $params = array($rfc);
 
     $result = pg_query_params($connection, $query, $params);
