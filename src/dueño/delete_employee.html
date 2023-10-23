@@ -24,27 +24,53 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
-        $(document).ready(function() {
-            $('#myForm').on('submit', function(event) {
-                event.preventDefault(); // Evitar la presentación del formulario
-                var formData = $(this).serialize(); // Serializar datos del formulario
+        function getPersonInfo() {
+            var rfc = $('#rfc').val();
+            
+            $.ajax({
+                type: 'GET',
+                url: '../../php/dueño/get_info.php', // Create a new PHP script to fetch person info
+                data: { rfc: rfc },
+                dataType: 'json',
+                success: function(response) {
+                    if (response.success) {
+                        $('#personInfo').html("Name: " + response.name + "<br>Email: " + response.email);
+                        $('#deleteButton').show();
+                    } else {
+                        $('#personInfo').html('No person found with the RFC: ' + rfc);
+                        $('#deleteButton').hide();
+                    }
+                },
+                error: function(xhr, status, error) {
+                    alert('Error in AJAX request: ' + error);
+                }
+            });
+        }
+
+        $('#myForm').on('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+            var rfc = $('#rfc').val();
+
+            if (confirm("Are you sure you want to delete the person with RFC: " + rfc + "?")) {
                 $.ajax({
                     type: 'POST',
-                    url: '../../php/dueño/erase_e.php',
-                    data: formData,
-                    dataType: 'json', // Espera una respuesta JSON
+                    url: '../../php/dueño/erase_e.php', // Create a PHP script for deletion
+                    data: { rfc: rfc },
+                    dataType: 'json',
                     success: function(response) {
                         if (response.success) {
-                            alert(response.message);
+                            alert('Person with RFC ' + rfc + ' has been deleted.');
+                            $('#personInfo').html(''); // Clear person info after deletion
+                            $('#deleteButton').hide();
                         } else {
                             alert('Error: ' + response.message);
                         }
                     },
                     error: function(xhr, status, error) {
-                        alert('Error en la solicitud AJAX: ' + error);
+                        alert('Error in AJAX request: ' + error);
                     }
                 });
-            });
+            }
         });
     </script>
 
