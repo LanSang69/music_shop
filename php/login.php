@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($connection) {
             if ($username === "admin") {
-                header("Location: ../src/dueño/plataforma_admin.html");
+                header("Location: ../src/dueno/plataforma_admin.html");
             } elseif ($username === "empleado") {
                 header("Location: ../src/empleados/plataforma.html");
             }
@@ -24,5 +24,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Error al conectar a PostgreSQL.";
     }
 }
-
 ?>

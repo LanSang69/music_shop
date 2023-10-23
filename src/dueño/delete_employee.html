@@ -29,7 +29,7 @@
             
             $.ajax({
                 type: 'GET',
-                url: '../../php/dueño/get_info.php', // Create a new PHP script to fetch person info
+                url: '../../php/dueno/get_info.php', // Create a new PHP script to fetch person info
                 data: { rfc: rfc },
                 dataType: 'json',
                 success: function(response) {
@@ -54,7 +54,7 @@
             if (confirm("Are you sure you want to delete the person with RFC: " + rfc + "?")) {
                 $.ajax({
                     type: 'POST',
-                    url: '../../php/dueño/erase_e.php', // Create a PHP script for deletion
+                    url: '../../php/dueno/erase_e.php', // Create a PHP script for deletion
                     data: { rfc: rfc },
                     dataType: 'json',
                     success: function(response) {
