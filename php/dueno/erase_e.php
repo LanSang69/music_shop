@@ -13,26 +13,23 @@ if ($connection) {
     // Consulta para obtener el nombre antes de borrar
     $getNombreQuery = "SELECT CONCAT(p_apellido, ' ', s_apellido, ' ', nombre) AS nombre FROM empleado WHERE rfc = '$rfc'";
     $getNombreResult = pg_query($connection, $getNombreQuery);
-    $nombreRow = pg_fetch_assoc($getNombreResult);
-    $nombre = utf8_encode($nombreRow['nombre']);
+    $nombre = pg_fetch_assoc($getNombreResult);
 
-    // Revisar si el RFC se encuentra en la base de datos
-    $checkQuery = "SELECT 1 FROM empleado WHERE rfc = '$rfc'";
+    // Revisar si el RFC se encuentra en la base de datosy
+    $checkQuery = "SELECT COUNT(*) FROM empleado WHERE rfc = '$rfc'";
     
     $checkResult = pg_query($connection, $checkQuery);
-    $rowCount = pg_num_rows($checkResult);
+    $rowCount = pg_fetch_result($checkResult, 0);
 
     if ($rowCount > 0) {
-        // Si existe, entonces procede con la operación
+        // SI existe, entonces procede con la operación
         $deleteQuery = "DELETE FROM empleado WHERE rfc = '$rfc'";
         $deleteResult = pg_query($connection, $deleteQuery);
 
         if ($deleteResult) {
-            header('Content-Type: application/json; charset=utf-8');
-
             $response = array(
                 'success' => true,
-                'message' => "Borrado exitoso para " . utf8_encode($nombre),
+                'message' => "Borrado exitoso para $nombre."
             );
         } else {
             $response = array(
@@ -51,7 +48,7 @@ if ($connection) {
         'success' => false,
         'message' => 'Error al conectar con PostgreSQL: ' . pg_last_error()
     );
-}
+}    
 
 header('Content-Type: application/json');
 echo json_encode($response);
