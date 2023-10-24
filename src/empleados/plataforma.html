@@ -5,18 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro de clientes</title>
     <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-        }
 
         .button-container {
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
         }
 
         .button {
@@ -27,9 +24,30 @@
             border: none;
             cursor: pointer;
         }
+
+        .button_logout {
+            align-items: left;
+            position:absolute;
+            margin: 10px;
+            top: 20px;
+            padding: 10px 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        .button_logout-container{
+            align-items: left;
+        }
     </style>
 </head>
 <body>
+    <div class="button_logout-container">
+        <a class="button_logout" href="../login_p.html">Log out</a>
+    </div>
     <div class="button-container">
         <a href="add_p.html" class="button">Agregar un producto</a>
         <a href="delete_p.html" class="button">Eliminar un producto</a>
