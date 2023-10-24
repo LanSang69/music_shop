@@ -21,24 +21,33 @@ if ($connection) {
 
     $result = pg_query($connection, $query);
 
-    if ($result) {
-        $response = array(
-            'success' => true,
-            'message' => 'Registro actualizado correctamente.'
-        );
+    if ($result !== false) {
+        $rowsAffected = pg_affected_rows($result);
+        if ($rowsAffected > 0) {
+            $response = array(
+                'success' => true,
+                'message' => 'Registro actualizado correctamente.'
+            );
+        } else {
+            $response = array(
+                'success' => false,
+                'message' => 'No se encontraron registros para actualizar.'
+            );
+        }
     } else {
         $response = array(
             'success' => false,
-            'message' => 'Error al actualizar el registro: ' . pg_last_error()
+            'message' => 'Error al ejecutar la actualización: ' . pg_last_error()
         );
     }
 } else {
     $response = array(
         'success' => false,
-        'message' => 'Falló la conexión con postgreSQL.'
+        'message' => 'Falló la conexión con PostgreSQL.'
     );
 }
 
-header('Content-Type: application/json'); // Establece el encabezado JSON
-echo json_encode($response); // Devuelve la respuesta JSON
+header('Content-Type: application/json');
+echo json_encode($response);
+
 ?>
