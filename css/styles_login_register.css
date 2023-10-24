@@ -6,6 +6,14 @@ body{
     height: 100vh;
 }
 
+.tablas{
+    text-align: center;
+}
+
+.link__tabla{
+    padding: 10px;
+}
+
 .button{
     position:relative;
     margin: 10px;
