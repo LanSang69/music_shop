@@ -11,7 +11,7 @@ if ($connection) {
     $rfc = $_POST['rfc'];
 
     // Consulta para obtener el nombre antes de borrar
-    $getNombreQuery = "SELECT CONCAT(p_apellido, s_apellido, nombre) AS nombre FROM empleado WHERE rfc = '$rfc'";
+    $getNombreQuery = "SELECT CONCAT(p_apellido, ' ', s_apellido, ' ', nombre) AS nombre FROM empleado WHERE rfc = '$rfc'";
     $getNombreResult = pg_query($connection, $getNombreQuery);
     $nombreRow = pg_fetch_assoc($getNombreResult);
     $nombre = $nombreRow['nombre'];
@@ -28,6 +28,8 @@ if ($connection) {
         $deleteResult = pg_query($connection, $deleteQuery);
 
         if ($deleteResult) {
+            header('Content-Type: application/json; charset=utf-8');
+
             $response = array(
                 'success' => true,
                 'message' => "Borrado exitoso para " . utf8_encode($nombre),
