@@ -10,20 +10,26 @@ $connection = pg_connect("host=$host port=$port dbname=$dbname user=$user passwo
 if ($connection) {
     $rfc = $_POST['rfc'];
 
-    // Check if the RFC exists in the database
-    $checkQuery = "SELECT COUNT(*) FROM empleados WHERE rfc = '$rfc'";
+    // Consulta para obtener el nombre antes de borrar
+    $getNombreQuery = "SELECT CONCAT(p_apellido, s_apellido, nombre) FROM empleado WHERE rfc = '$rfc'";
+    $getNombreResult = pg_query($connection, $getNombreQuery);
+    $nombre = pg_fetch_result($getNombreResult, 0);
+
+    // Revisar si el RFC se encuentra en la base de datos
+    $checkQuery = "SELECT COUNT(*) FROM empleado WHERE rfc = '$rfc";
+    
     $checkResult = pg_query($connection, $checkQuery);
     $rowCount = pg_fetch_result($checkResult, 0);
 
     if ($rowCount > 0) {
-        // The record exists, proceed with the delete operation
-        $deleteQuery = "DELETE FROM empleados WHERE rfc = '$rfc'";
+        // SI existe, entonces procede con la operación
+        $deleteQuery = "DELETE FROM empleado WHERE rfc = '$rfc'";
         $deleteResult = pg_query($connection, $deleteQuery);
 
         if ($deleteResult) {
             $response = array(
                 'success' => true,
-                'message' => 'Borrado éxitoso.'
+                'message' => "Borrado exitoso para $nombre."
             );
         } else {
             $response = array(
@@ -40,7 +46,7 @@ if ($connection) {
 } else {
     $response = array(
         'success' => false,
-        'message' => 'RFC no encontrado en la base de datos.'
+        'message' => 'Error al conectar con PostgreSQL: ' . pg_last_error()
     );
 }    
 

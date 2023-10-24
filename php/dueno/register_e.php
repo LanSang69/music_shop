@@ -9,14 +9,16 @@ $connection = pg_connect("host=$host port=$port dbname=$dbname user=$user passwo
 
 if ($connection) {
     $nombre = $_POST['nombre'];
-    $apellido = $_POST['apellido'];
+    $apellido1 = $_POST['apellido1'];
+    $apellido2 = $_POST['apellido2'];
     $rfc = $_POST['rfc'];
     $puesto = $_POST['puesto'];
-    $horario = $_POST['horario'];
+    $dia = $_POST['dia'];
+    $hora = $_POST['hora'];
     $sucursal = $_POST['sucursal'];
 
-    $query = "INSERT INTO empleados (nombre, apellido, rfc, puesto, horario, sucursal)
-              VALUES ('$nombre', '$apellido', $rfc, '$puesto', '$horario', '$sucursal')";
+    $query = "INSERT INTO empleado (nombre, p_apellido, s_apellido, rfc, puesto, dia, hora, sucursal)
+              VALUES ('$nombre', '$apellido1', '$apellido2', '$rfc', '$puesto', '$dia', '$hora', '$sucursal')";
 
     $result = pg_query($connection, $query);
 

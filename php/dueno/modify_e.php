@@ -9,13 +9,15 @@ $connection = pg_connect("host=$host port=$port dbname=$dbname user=$user passwo
 
 if ($connection) {
     $nombre = $_POST['nombre'];
-    $apellido = $_POST['apellido'];
+    $apellido1 = $_POST['apellido1'];
+    $apellido2 = $_POST['apellido2'];
     $rfc = $_POST['rfc'];
     $puesto = $_POST['puesto'];
-    $horario = $_POST['horario'];
+    $dia = $_POST['dia'];
+    $hora = $_POST['hora'];
     $sucursal = $_POST['sucursal'];
 
-    $query = "UPDATE empleados SET nombre = '$nombre', apellido = '$apellido', rfc = '$rfc', puesto = '$puesto', horario = '$horario', sucursal = '$sucursal' WHERE rfc = '$rfc'";
+    $query = "UPDATE empleado SET nombre = '$nombre', p_apellido = '$apellido1', s_apellido='$apellido2', rfc = '$rfc', puesto = '$puesto', dia = '$dia', hora = '$hora', sucursal = '$sucursal' WHERE rfc = '$rfc'";
 
     $result = pg_query($connection, $query);
 
