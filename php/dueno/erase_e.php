@@ -14,7 +14,7 @@ if ($connection) {
     $getNombreQuery = "SELECT CONCAT(p_apellido, ' ', s_apellido, ' ', nombre) AS nombre FROM empleado WHERE rfc = '$rfc'";
     $getNombreResult = pg_query($connection, $getNombreQuery);
     $nombreRow = pg_fetch_assoc($getNombreResult);
-    $nombre = $nombreRow['nombre'];
+    $nombre = utf8_encode($nombreRow['nombre']);
 
     // Revisar si el RFC se encuentra en la base de datos
     $checkQuery = "SELECT 1 FROM empleado WHERE rfc = '$rfc'";
