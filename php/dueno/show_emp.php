@@ -10,16 +10,18 @@ $connection = pg_connect("host=$host port=$port dbname=$dbname user=$user passwo
 if ($connection) {
     echo "Connected to PostgreSQL successfully!<br><br>";
 
-    $result = pg_query($connection, "SELECT * FROM empleado ORDER BY horario");
+    $result = pg_query($connection, "SELECT * FROM empleado ORDER BY p_apellido, s_apellido");
 
     // Display table data with styling
     echo '<table style="border-collapse: collapse;">'; // Add border-collapse CSS
     echo '<tr>';
     echo '<th style="border: 1px solid black; padding: 5px;">Nombre</th>';
-    echo '<th style="border: 1px solid black; padding: 5px;">Apellidos</th>';
+    echo '<th style="border: 1px solid black; padding: 5px;">Primer apellido</th>';
+    echo '<th style="border: 1px solid black; padding: 5px;">Segundo apellido</th>';
     echo '<th style="border: 1px solid black; padding: 5px;">RFC</th>';
     echo '<th style="border: 1px solid black; padding: 5px;">Puesto</th>';
-    echo '<th style="border: 1px solid black; padding: 5px;">Horario</th>';
+    echo '<th style="border: 1px solid black; padding: 5px;">Día</th>';
+    echo '<th style="border: 1px solid black; padding: 5px;">Hora</th>';
     echo '<th style="border: 1px solid black; padding: 5px;">Id de Sucursal</th>';
 
     echo '</tr>';
@@ -27,10 +29,12 @@ if ($connection) {
     while ($row = pg_fetch_assoc($result)) {
         echo '<tr>';
         echo '<td style="border: 1px solid black; padding: 5px;">' . $row['nombre'] . '</td>';
-        echo '<td style="border: 1px solid black; padding: 5px;">' . $row['apellido'] . '</td>';
+        echo '<td style="border: 1px solid black; padding: 5px;">' . $row['p_apellido'] . '</td>';
+        echo '<td style="border: 1px solid black; padding: 5px;">' . $row['s_apellido'] . '</td>';
         echo '<td style="border: 1px solid black; padding: 5px;">' . $row['rfc'] . '</td>';
         echo '<td style="border: 1px solid black; padding: 5px;">' . $row['puesto'] . '</td>';
-        echo '<td style="border: 1px solid black; padding: 5px;">' . $row['horario'] . '</td>';
+        echo '<td style="border: 1px solid black; padding: 5px;">' . $row['dia'] . '</td>';
+        echo '<td style="border: 1px solid black; padding: 5px;">' . $row['hora'] . '</td>';
         echo '<td style="border: 1px solid black; padding: 5px;">' . $row['sucursal'] . '</td>';
         echo '</tr>';
     }
