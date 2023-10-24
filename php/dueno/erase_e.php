@@ -30,7 +30,7 @@ if ($connection) {
         if ($deleteResult) {
             $response = array(
                 'success' => true,
-                'message' => "Borrado exitoso para " . json_encode($nombre),
+                'message' => "Borrado exitoso para " . utf8_encode($nombre),
             );
         } else {
             $response = array(
