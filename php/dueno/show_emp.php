@@ -8,9 +8,7 @@ $password = "LanSan2004*";
 $connection = pg_connect("host=$host port=$port dbname=$dbname user=$user password=$password");
 
 if ($connection) {
-    echo "Connected to PostgreSQL successfully!<br><br>";
-
-    $result = pg_query($connection, "SELECT * FROM empleado ORDER BY p_apellido, s_apellido");
+    $result = pg_query($connection, "SELECT nombre, p_apellido, s_apellido, rfc, puesto.nombre AS puesto_nombre, dia, hora, sucursal FROM empleado JOIN puesto ON empleado.puesto = puesto.id");
 
     // Display table data with styling
     echo '<table style="border-collapse: collapse;">'; // Add border-collapse CSS
@@ -32,7 +30,7 @@ if ($connection) {
         echo '<td style="border: 1px solid black; padding: 5px;">' . $row['p_apellido'] . '</td>';
         echo '<td style="border: 1px solid black; padding: 5px;">' . $row['s_apellido'] . '</td>';
         echo '<td style="border: 1px solid black; padding: 5px;">' . $row['rfc'] . '</td>';
-        echo '<td style="border: 1px solid black; padding: 5px;">' . $row['puesto'] . '</td>';
+        echo '<td style="border: 1px solid black; padding: 5px;">' . $row['puesto_nombre'] . '</td>';
         echo '<td style="border: 1px solid black; padding: 5px;">' . $row['dia'] . '</td>';
         echo '<td style="border: 1px solid black; padding: 5px;">' . $row['hora'] . '</td>';
         echo '<td style="border: 1px solid black; padding: 5px;">' . $row['sucursal'] . '</td>';
