@@ -10,7 +10,7 @@ $connection = pg_connect("host=$host port=$port dbname=$dbname user=$user passwo
 if ($connection) {
     echo "Connected to PostgreSQL successfully!<br><br>";
 
-    $result = pg_query($connection, "SELECT * FROM empleados ORDER BY horario");
+    $result = pg_query($connection, "SELECT * FROM empleado ORDER BY horario");
 
     // Display table data with styling
     echo '<table style="border-collapse: collapse;">'; // Add border-collapse CSS
