@@ -13,8 +13,9 @@ if ($connection) {
     // Consulta para obtener el nombre antes de borrar
     $getNombreQuery = "SELECT CONCAT(p_apellido, ' ', s_apellido, ' ', nombre) AS nombre FROM empleado WHERE rfc = '$rfc'";
     $getNombreResult = pg_query($connection, $getNombreQuery);
-    $nombre = pg_fetch_assoc($getNombreResult);
-
+    $nombreRow = pg_fetch_assoc($getNombreResult);
+    $nombre = $nombreRow['nombre'];
+    
     // Revisar si el RFC se encuentra en la base de datosy
     $checkQuery = "SELECT COUNT(*) FROM empleado WHERE rfc = '$rfc'";
     
