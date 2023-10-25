@@ -8,8 +8,7 @@ $password = "LanSan2004*";
 $connection = pg_connect("host=$host port=$port dbname=$dbname user=$user password=$password");
 
 if ($connection) {
-    $result = pg_query($connection, "SELECT id_producto, producto.nombre AS nombre, tipo_producto, marca, precio_venta, descripcion, modelo, existencia, apartado, proveedor.nombre AS proveedor, categoria FROM producto JOIN proveedor ON proveedor=proveedor.id;
-    ");
+    $result = pg_query($connection, "SELECT id_producto, producto.nombre AS nombre, tipo_producto, marca, precio_venta, descripcion, modelo, existencia, apartado, proveedor.nombre AS proveedor, categoria FROM producto JOIN proveedor ON proveedor=proveedor.id");
 
     // Display table data with styling
     echo '<table style="border-collapse: collapse;">'; // Add border-collapse CSS
