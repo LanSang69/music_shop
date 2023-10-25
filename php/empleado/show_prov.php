@@ -8,7 +8,7 @@ $password = "LanSan2004*";
 $connection = pg_connect("host=$host port=$port dbname=$dbname user=$user password=$password");
 
 if ($connection) {
-    $result = pg_query($connection, "SELECT id, nombre, rfc, razon_social, CONCAT(calle, ' ', colonia, ' ', ciudad, ' ', codigo_postal) AS domicilio, CONCAT(primer_apellido, ' ', segundo_apellido, ' ', nombre) AS contacto, telefono_oficina, telefono_celular FROM proveedor");
+    $result = pg_query($connection, "SELECT id, nombre, rfc, razon_social, CONCAT(calle, ' ', colonia, ' ', ciudad, ' ', codigo_postal) AS domicilio, CONCAT(primer_apellido, ' ', segundo_apellido, ' ', nombre_contacto) AS contacto, telefono_oficina, telefono_celular FROM proveedor");
 
     // Display table data with styling
     echo '<table style="border-collapse: collapse;">'; // Add border-collapse CSS
