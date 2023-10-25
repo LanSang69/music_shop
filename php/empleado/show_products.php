@@ -29,7 +29,7 @@ if ($connection) {
 
     while ($row = pg_fetch_assoc($result)) {
         echo '<tr>';
-        echo '<td style="border: 1px solid black; padding: 5px;">' . $row['id_proucto'] . '</td>';
+        echo '<td style="border: 1px solid black; padding: 5px;">' . $row['id_producto'] . '</td>';
         echo '<td style="border: 1px solid black; padding: 5px;">' . $row['nombre'] . '</td>';
         echo '<td style="border: 1px solid black; padding: 5px;">' . $row['tipo_producto'] . '</td>';
         echo '<td style="border: 1px solid black; padding: 5px;">' . $row['marca'] . '</td>';
