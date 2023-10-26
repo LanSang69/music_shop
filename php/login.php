@@ -13,29 +13,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $connection = pg_connect("host=$host port=$port dbname=$dbname user=$username password=$password");
 
     if ($connection) {
-        if ($username === "admin") {
-            // Redirect to the admin page
-            header("Location: ../src/dueno/plataforma_admin.html");
-            exit; // Prevent further execution of the script
-        } elseif ($username === "empleado") {
-            // Redirect to the employee page
-            header("Location: ../src/empleados/plataforma.html");
-            exit; // Prevent further execution of the script
-        } else {
-            $response = array(
-                'success' => false,
-                'message' => 'Credenciales erróneas'
-            );
-        }
-        pg_close($connection);
+            if ($username === "admin") {
+                header("Location: ../src/dueno/plataforma_admin.html");
+            } elseif ($username === "empleado") {
+                header("Location: ../src/empleados/plataforma.html");
+            }
+            pg_close($connection);
+            exit;
     } else {
-        $response = array(
-            'success' => false,
-            'message' => 'Credenciales erróneas'
-        );
+        header("Location: ../src/login_p.html");
     }
-
-    header('Content-Type: application/json');
-    echo json_encode($response);
 }
 ?>
