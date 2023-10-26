@@ -8,7 +8,6 @@ $password = "LanSan2004*";
 $connection = pg_connect("host=$host port=$port dbname=$dbname user=$user password=$password");
 
 if ($connection) {
-    $id_producto = $_POST['id_p'];
     $nombre = $_POST['nombre'];
     $tipo_producto = $_POST['tipo'];
     $marca = $_POST['marca'];
