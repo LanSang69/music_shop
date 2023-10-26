@@ -13,15 +13,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $connection = pg_connect("host=$host port=$port dbname=$dbname user=$username password=$password");
 
     if ($connection) {
-            if ($username === "admin") {
-                header("Location: ../src/dueno/plataforma_admin.html");
-            } elseif ($username === "empleado") {
-                header("Location: ../src/empleados/plataforma.html");
-            }
-            pg_close($connection);
-            exit;
+        if ($username === "admin") {
+            header("Location: ../src/dueno/plataforma_admin.html");
+        } elseif ($username === "empleado") {
+            header("Location: ../src/empleados/plataforma.html");
+        }
+        pg_close($connection);
+        exit;
     } else {
-        echo "Error al conectar a PostgreSQL.";
+        $response = array(
+            'success' => false,
+            'message' => 'Credenciales erróneas'
+        );
+        header('Content-Type: application/json');
+        echo json_encode($response);
     }
 }
 ?>
