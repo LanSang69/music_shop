@@ -24,7 +24,7 @@ if ($connection) {
 
     if ($rowCount > 0) {
         // SI existe, entonces procede con la operación
-        $deleteQuery = "DELETE FROM empleado WHERE rfc = '$rfc'";
+        $deleteQuery = "DELETE FROM producto WHERE id_producto = '$id_producto'";
         $deleteResult = pg_query($connection, $deleteQuery);
 
         if ($deleteResult) {
