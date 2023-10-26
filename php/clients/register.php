@@ -9,15 +9,20 @@ $connection = pg_connect("host=$host port=$port dbname=$dbname user=$user passwo
 
 if ($connection) {
     $nombre = $_POST['nombre'];
-    $apellido = $_POST['apellido'];
+    $apellido1 = $_POST['apellido1'];
+    $apellido2 = $_POST['apellido2'];
     $rfc = $_POST['rfc'];
-    $domicilio_f = $_POST['domicilio_f'];
+    $calle = $_POST['calle'];
+    $colonia = $_POST['colonia'];
+    $ciudad = $_POST['cudad'];
+    $cp = $_POST['cp'];
     $correo = $_POST['correo'];
     $celular = $_POST['celular'];
     $telefono = $_POST['telefono'];
+    $password = $_POST['password'];
 
-    $query = "INSERT INTO cliente (nombre, apellido, rfc, domicilio_f, correo, celular, telefono)
-              VALUES ('$nombre', '$apellido', $rfc, '$domicilio_f', '$correo', '$celular', '$telefono')";
+    $query = "INSERT INTO cliente (nombre, p_apellido, s_apellido, rfc, calle, colonia, ciudad, codigo_postal, correo, celular, telefono, password)
+              VALUES ('$nombre', '$apellido1', '$apellido2', '$rfc', '$calle', '$colonia', '$ciudad', '$cp', '$correo', '$celular', '$telefono', '$password')";
 
     $result = pg_query($connection, $query);
 
@@ -35,7 +40,7 @@ if ($connection) {
 } else {
     $response = array(
         'success' => false,
-        'message' => 'Failed to connect to PostgreSQL.'
+        'message' => 'Fallo en la conexión con PostgreSQL.'
     );
 }
 
