@@ -9,15 +9,17 @@ $connection = pg_connect("host=$host port=$port dbname=$dbname user=$user passwo
 
 if ($connection) {
     $nombre = $_POST['nombre'];
-    $apellido = $_POST['apellido'];
-    $rfc = $_POST['rfc'];
-    $domicilio_f = $_POST['domicilio_f'];
-    $correo = $_POST['correo'];
-    $celular = $_POST['celular'];
-    $telefono = $_POST['telefono'];
+    $tipo_producto = $_POST['tipo'];
+    $marca = $_POST['marca'];
+    $precio_venta = $_POST['precio'];
+    $descripcion = $_POST['descripcion'];
+    $modelo = $_POST['modelo'];
+    $existencia = $_POST['existencia'];
+    $proveedor = $_POST['proveedor'];
+    $categoria = $_POST['categoria'];
 
-    $query = "INSERT INTO cliente (nombre, apellido, rfc, domicilio_f, correo, celular, telefono)
-              VALUES ('$nombre', '$apellido', $rfc, '$domicilio_f', '$correo', '$celular', '$telefono')";
+    $query = "INSERT INTO producto (nombre, tipo_producto, marca, precio_venta, descripcion, modelo, existencia, proveedor, categoria)
+              VALUES ('$nombre', '$tipo_producto', '$marca', '$precio_venta', '$descripcion', '$modelo', '$existencia', '$proveedor', '$categoria')";
 
     $result = pg_query($connection, $query);
 
@@ -29,7 +31,7 @@ if ($connection) {
     } else {
         $response = array(
             'success' => false,
-            'message' => 'Error al insertar el registro: ' . pg_last_error()
+            'message' => 'Error al insertar el registro: ' . pg_last_error($connection)
         );
     }
 } else {

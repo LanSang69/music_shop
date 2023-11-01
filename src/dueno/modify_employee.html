@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Nota Mala | Modificación</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="../../css/styles_login_register.css">
+</head>
+<body>
+    <a class="button" href="plataforma_admin.html">Volver</a>
+    <a class="button" href="../login_p.html">Log out</a>
+    <div class="form_registro">
+        <h1>Updates</h1>
+        <form id="myForm">
+            <form id="myForm">
+                <div class="user">
+                    <input type="text" name="nombre" placeholder="Nombre" required>
+                </div>
+                <div class="user">
+                    <input type="text" name="apellido1" placeholder="Primer apellido" required>
+                </div>
+                <div class="user">
+                    <input type="text" name="apellido2" placeholder="Segundo apellido" required>
+                </div>
+                <div class="user">
+                    <input type="text" name="rfc" placeholder="RFC" required>
+                </div>
+                <div class="user">
+                    <input type="text" name="puesto" placeholder="puesto" required>
+                </div>
+                <div class="user">
+                    <input type="text" name="dia" placeholder="dias laborales" required>
+                </div>
+                <div class="user">
+                    <input type="text" name="hora" placeholder="horario" required>
+                </div>
+                <div class="user">
+                    <input type="text" name="sucursal" placeholder="Id de la sucursal" required>
+                </div>
+            <input type="submit" value="Actualizar">
+            <div class="tablas">
+                <a href="show_employees.html" class="link__tabla">Empleados</a>
+                <a href="show_sucursal.html" class="link__tabla">Sucursales</a>
+                <a href="show_puesto.html" class="link__tabla">Puestos</a>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#myForm').on('submit', function(event) {
+                event.preventDefault(); // Evitar la presentación del formulario
+                var formData = $(this).serialize(); // Serializar datos del formulario
+                $.ajax({
+                    type: 'POST',
+                    url: '../../php/dueno/modify_e.php',
+                    data: formData,
+                    dataType: 'json', // Espera una respuesta JSON
+                    success: function(response) {
+                        if (response.success) {
+                            alert(response.message);
+                        } else {
+                            alert('Error: ' + response.message);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        alert('Error en la solicitud AJAX: ' + error);
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+</body>
+</html>
