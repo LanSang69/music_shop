@@ -1,0 +1,19 @@
+.button{
+    position:relative;
+    margin: 10px;
+    top:20px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.table{
+    position: relative;
+    margin-top: 30px;
+    background-color: #fff;
+}
