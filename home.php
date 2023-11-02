@@ -19,8 +19,8 @@
             <nav class="navbar">
                 <ul>
                     <li><a href="#">Inicio</a></li>
-                    <li><a href="#">Productos</a></li>
-                    <li><a href="login.php" target="_blank">Iniciar sesión</a></li>
+                    <li><a href="#lista-1">Productos</a></li>
+                    <li><a href="login.php">Iniciar sesión</a></li>
                     <li><a href="#">Visítanos</a></li>
                 </ul>
             </nav>
@@ -336,6 +336,5 @@
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
     <script src="js/script.js"></script>
-    <script src="js/register.js"></script>
 </body>
 </html>

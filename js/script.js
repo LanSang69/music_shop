@@ -41,6 +41,7 @@ const elementos2 = document.getElementById('lista-2');
 const elementos3 = document.getElementById('lista-3');
 const lista = document.querySelector('#lista-carrito tbody');
 const vaciarCarritoBtn = document.getElementById('vaciar-carrito');
+const buttonBuy = document.getElementById('comprar');
 
 cargarEventListeners();
 
@@ -51,6 +52,9 @@ function cargarEventListeners(){
     carrito.addEventListener('click', eliminarElemento);
 
     vaciarCarritoBtn.addEventListener('click', vaciarCarrito);
+    buttonBuy.addEventListener('click', ()=>{
+        alert("comprado");
+    });
 }
 
 function comprarElemento(e){
