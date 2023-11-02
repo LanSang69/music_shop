@@ -5,6 +5,7 @@
     box-sizing: border-box;
     text-decoration: none;
     list-style: none;
+    scroll-behavior: smooth;
 }
 
 body{
@@ -66,7 +67,14 @@ body{
     z-index: 1000;
 }
 
-.logo{
+.logo {
+    font-size: 25px;
+    color: #7270ec;
+    text-transform: uppercase;
+    font-weight: 800;
+}
+
+.login {
     font-size: 25px;
     color: #7270ec;
     text-transform: uppercase;
@@ -108,6 +116,12 @@ body{
 
 .submenu #carrito{
     display: none;
+    right: 0;
+    top: 100%;
+    z-index: 1;
+    background-color: #4E4B5076;
+    padding: 20px;
+    min-width: 400px;
 }
 
 .submenu:hover #carrito{
