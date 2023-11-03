@@ -12,11 +12,19 @@ if ($connection) {
 
 
     while ($row = pg_fetch_assoc($result)) {
+        if ($row["existencia"] >= 15) {
+            $existenciaC = '#00FF00';
+        } else {
+            $existenciaC = '#FF0000';
+        }
+
         echo '<div class="categorie">';
         echo '<div class="categorie-1">';
-        echo '<h3 class="product-title">' . $row["nombre"] . '</h3>';
+        echo '<h3 class="product-title" id="' . $row["id_producto"] . '">' . $row["nombre"] . '</h3>';
         echo '<div class="prices">';
         echo '<p class="precio">$' . $row["precio_venta"] . '</p>';
+        echo '<br>';
+        echo '<p class="existencia">Disponibles: <span class="existenciaDB" style="color:' . $existenciaC . '">' . $row["existencia"] . '</span></p>';
         echo '</div>';
         echo '<a href="#" class="agregar-carrito btn-3" data-id="' . $row["id_producto"] . '">Agregar al carrito</a>';
         echo '</div>';

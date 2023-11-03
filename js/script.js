@@ -41,7 +41,7 @@ const elementos2 = document.getElementById('lista-2');
 const elementos3 = document.getElementById('lista-3');
 const lista = document.querySelector('#lista-carrito tbody');
 const vaciarCarritoBtn = document.getElementById('vaciar-carrito');
-const buttonBuy = document.getElementById('comprar');
+const buttonBuy = document.getElementById('comprar-producto');
 
 cargarEventListeners();
 
@@ -52,9 +52,6 @@ function cargarEventListeners(){
     carrito.addEventListener('click', eliminarElemento);
 
     vaciarCarritoBtn.addEventListener('click', vaciarCarrito);
-    buttonBuy.addEventListener('click', ()=>{
-        alert("comprado");
-    });
 }
 
 function comprarElemento(e){
@@ -74,6 +71,26 @@ function leerDatosElemento(elemento){
     }
 
     insertarCarrito(infoElemento);
+    enviarDatosAlServidor(infoElemento);
+}
+
+function enviarDatosAlServidor(infoElemento) {
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', 'php/clients/procesar_compra.php', true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+    xhr.onload = function () {
+        if (xhr.status === 200) {
+            // Manejar la respuesta del servidor si es necesario
+            console.log(xhr.responseText);
+        }
+    };
+
+    // Convertir el objeto JavaScript en una cadena JSON
+    const datos = JSON.stringify(infoElemento);
+
+    // Enviar los datos al servidor
+    xhr.send('datos=' + datos);
 }
 
 function insertarCarrito(elemento){

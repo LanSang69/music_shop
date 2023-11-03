@@ -180,8 +180,20 @@ th, td{
 }
 
 .prices{
-    display: flex;
     margin: 20px 0;
+    text-align: left;
+}
+
+.existencia{
+    width: 160px;
+    border-style: solid;
+    border-color: #d4d4d4;
+    border-width: 1px;
+    padding: 10px;
+}
+
+.existenciaDB{
+    font-size: large;
 }
 
 .price-1{
@@ -403,9 +415,10 @@ hr{
         width: 200px;
     }
 
-    .prices{
-        flex-direction: column;
-    }
+    /* .prices{
+        flex-direction: row;
+        flex-wrap: wrap;
+    } */
 
     .price-1{
         margin: 0;
