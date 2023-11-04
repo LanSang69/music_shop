@@ -5,14 +5,16 @@
     <Meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MusicStore | La música es tu mejor compañía</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css">
     <link rel="stylesheet" href="css/styles_home.css">
 </head>
 <body>
 
     <header class="header">
         <div class="menu container">
-            <a href="#" class="logo">La nota mala</a>
+            <a class="logo">La nota mala</a>
+            <a class="logo">
+            </a>
             <input type="checkbox" id="menu" />
             <label for="menu"><img src="images/menu.svg" class="menu-icono" alt=""></label>
 
@@ -41,6 +43,7 @@
                                 <tbody></tbody>
                             </table>
                             <a href="#" id="vaciar-carrito" class="btn-3">Vaciar carrito</a>
+                            <a href="#" id="comprar-producto" class="btn-3">Comprar Ahora</a>
                         </div>
                     </li>
                 </ul>
@@ -107,7 +110,13 @@
     <hr>
     <section class="promos container" id="lista-1">
         <h2>Promociones</h2>
+
         <div class="categories">
+
+            <?php 
+                include "php/clients/display_prod.php"
+            ?>
+
             <div class="categorie">
                 <div class="categorie-1">
                     <h3>Promoción 1</h3>

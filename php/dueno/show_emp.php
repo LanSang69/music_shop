@@ -8,7 +8,9 @@ $password = "LanSan2004*";
 $connection = pg_connect("host=$host port=$port dbname=$dbname user=$user password=$password");
 
 if ($connection) {
-    $result = pg_query($connection, "SELECT empleado.nombre, p_apellido, s_apellido, rfc, puesto.nombre AS puesto_nombre, dia, hora, sucursal.nombre AS nombre_sucursal FROM empleado JOIN puesto ON empleado.puesto = puesto.id JOIN sucursal ON sucursal.id = empleado.sucursal");
+    $result = pg_query($connection, "SELECT empleado.nombre, p_apellido, s_apellido, rfc, 
+    puesto.nombre AS puesto_nombre, dia, hora, sucursal.nombre AS nombre_sucursal FROM empleado 
+    JOIN puesto ON empleado.puesto = puesto.id JOIN sucursal ON sucursal.id = empleado.sucursal");
 
     // Display table data with styling
     echo '<table style="border-collapse: collapse;">'; // Add border-collapse CSS

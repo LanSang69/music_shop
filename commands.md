@@ -27,9 +27,10 @@ CREATE TABLE cliente (
     password VARCHAR(30)
 );
 
-CREATE TABLE empleado (
+CREATE TABLE empleado (                     --> NO TERMINADA
     nombre VARCHAR(100) NOT NULL,
-    p_apellido VARCHAR(50) NOT NULL, s_apellido VARCHAR(50) NOT NULL,
+    p_apellido VARCHAR(50) NOT NULL, 
+    s_apellido VARCHAR(50) NOT NULL,
     rfc VARCHAR(13) PRIMARY KEY,
     puesto INTEGER NOT NULL,
     dia VARCHAR(30), hora VARCHAR(30), 
@@ -38,7 +39,7 @@ CREATE TABLE empleado (
 );
 
 
-CREATE TABLE sucursales (
+CREATE TABLE sucursal (
     id VARCHAR(20) PRIMARY KEY,
     nombre VARCHAR(30),
     direccion VARCHAR(50)
@@ -73,4 +74,10 @@ CREATE TABLE proveedor (
     segundo_apellido VARCHAR(50),
     telefono_oficina VARCHAR(20),
     telefono_celular VARCHAR(20) NOT NULL
+);
+
+CREATE TABLE puesto(
+    id SERIAL PRIMARY KEY,
+    nombre VARCHAR(50),
+    descripcion VARCHAR(250)
 );
