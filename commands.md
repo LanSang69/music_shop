@@ -33,10 +33,25 @@ CREATE TABLE empleado (
     p_apellido VARCHAR(50) NOT NULL, 
     s_apellido VARCHAR(50) NOT NULL,
     rfc VARCHAR(13) UNIQUE,
-    puesto INTEGER NOT NULL,
-    dia VARCHAR(30), hora VARCHAR(30), 
     sucursal INTEGER NOT NULL,
     CONSTRAINT sucursal_referencia FOREIGN KEY(sucursal) REFERENCES sucursal(id), CONSTRAINT puesto_referencia FOREIGN KEY(puesto) REFERENCES puesto(id)
+);
+
+CREATE TABLE horario 
+(
+id_empleado INT,
+dia INT,
+hora_entrada TIME,
+hora_salida TIME,
+CONSTRAINT empleado_horario FOREIGN KEY (id_empleado) REFERENCES empleado(id),
+CONSTRAINT dias FOREIGN KEY(dia) REFERENCES dia(id), 
+CONSTRAINT consistency_schedule CHECK (hora_entrada <= hora_salida)
+);
+
+CREATE TABLE dia
+(
+id SERIAL PRIMARY KEY,
+dia VARCHAR(10)
 );
 
 
