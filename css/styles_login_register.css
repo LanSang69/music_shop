@@ -7,11 +7,14 @@ body{
 }
 
 .tablas{
-    text-align: center;
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
 }
 
 .link__tabla{
-    padding: 10px;
+    padding: 15px;
 }
 
 .button{

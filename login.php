@@ -6,8 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MusicStore | Iniciar sesión</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+<<<<<<< HEAD:login.html
+    <link rel="stylesheet" href="/css/styles_login_register.css">
+=======
     <link rel="stylesheet" href="css/styles_login_register.css">
     <link rel="stylesheet" href="css/loginStyle.css">
+>>>>>>> F_diseño:login.php
 </head>
 <body>
     <a class="button" href="home.php">Volver</a>

@@ -13,16 +13,16 @@ if ($connection) {
     // Display table data with styling
     echo '<table style="border-collapse: collapse;">'; // Add border-collapse CSS
     echo '<tr>';
-    echo '<th style="border: 1px solid black; padding: 5px;">id</th>';
-    echo '<th style="border: 1px solid black; padding: 5px;">Nombre</th>';
-    echo '<th style="border: 1px solid black; padding: 5px;">Descripción</th>';
+    echo '<th style="border: 1px solid black; padding: 5px; font-size: 20px;">id</th>';
+    echo '<th style="border: 1px solid black; padding: 5px; font-size: 20px;">Nombre</th>';
+    echo '<th style="border: 1px solid black; padding: 5px; font-size: 20px;">Descripción</th>';
     echo '</tr>';
 
     while ($row = pg_fetch_assoc($result)) {
         echo '<tr>';
-        echo '<td style="border: 1px solid black; padding: 5px;">' . $row['id'] . '</td>';
-        echo '<td style="border: 1px solid black; padding: 5px;">' . $row['nombre'] . '</td>';
-        echo '<td style="border: 1px solid black; padding: 5px;">' . $row['descripcion'] . '</td>';
+        echo '<td style="border: 1px solid black; padding: 5px; font-size: 20px;">' . $row['id'] . '</td>';
+        echo '<td style="border: 1px solid black; padding: 5px; font-size: 20px;">' . $row['nombre'] . '</td>';
+        echo '<td style="border: 1px solid black; padding: 5px; font-size: 20px;">' . $row['descripcion'] . '</td>';
         echo '</tr>';
     }
 

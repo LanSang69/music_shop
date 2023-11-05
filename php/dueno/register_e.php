@@ -13,12 +13,10 @@ if ($connection) {
     $apellido2 = $_POST['apellido2'];
     $rfc = $_POST['rfc'];
     $puesto = $_POST['puesto'];
-    $dia = $_POST['dia'];
-    $hora = $_POST['hora'];
     $sucursal = $_POST['sucursal'];
 
-    $query = "INSERT INTO empleado (nombre, p_apellido, s_apellido, rfc, puesto, dia, hora, sucursal)
-              VALUES ('$nombre', '$apellido1', '$apellido2', '$rfc', '$puesto', '$dia', '$hora', '$sucursal')";
+    $query = "INSERT INTO empleado (nombre, p_apellido, s_apellido, rfc, puesto, sucursal)
+              VALUES ('$nombre', '$apellido1', '$apellido2', '$rfc', '$puesto', '$sucursal')";
 
     $result = pg_query($connection, $query);
 
