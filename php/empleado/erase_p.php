@@ -8,22 +8,29 @@ $password = "LanSan2004*";
 $connection = pg_connect("host=$host port=$port dbname=$dbname user=$user password=$password");
 
 if ($connection) {
-    $rfc = $_POST['rfc'];
+    $id_producto = $_POST['id_p'];
 
-    // Check if the RFC exists in the database
-    $checkQuery = "SELECT COUNT(*) FROM cliente WHERE rfc = '$rfc'";
+    // Consulta para obtener el nombre antes de borrar
+    $getNombreQuery = "SELECT nombre FROM producto WHERE id_producto = '$id_producto'";
+    $getNombreResult = pg_query($connection, $getNombreQuery);
+    $nombreRow = pg_fetch_assoc($getNombreResult);
+    $nombre = $nombreRow['nombre'];
+    
+    // Revisar si el RFC se encuentra en la base de datosy
+    $checkQuery = "SELECT COUNT(*) FROM producto WHERE id_producto = '$id_producto'";
+    
     $checkResult = pg_query($connection, $checkQuery);
     $rowCount = pg_fetch_result($checkResult, 0);
 
     if ($rowCount > 0) {
-        // The record exists, proceed with the delete operation
-        $deleteQuery = "DELETE FROM cliente WHERE rfc = '$rfc'";
+        // SI existe, entonces procede con la operación
+        $deleteQuery = "DELETE FROM producto WHERE id_producto = '$id_producto'";
         $deleteResult = pg_query($connection, $deleteQuery);
 
         if ($deleteResult) {
             $response = array(
                 'success' => true,
-                'message' => 'Borrado éxitoso.'
+                'message' => "Borrado exitoso para $nombre."
             );
         } else {
             $response = array(
@@ -34,13 +41,13 @@ if ($connection) {
     } else {
         $response = array(
             'success' => false,
-            'message' => 'RFC no encontrado en la base de datos.'
+            'message' => 'Id no encontrado en la base de datos.'
         );
     }
 } else {
     $response = array(
         'success' => false,
-        'message' => 'RFC no encontrado en la base de datos.'
+        'message' => 'Error al conectar con PostgreSQL: ' . pg_last_error()
     );
 }    
 

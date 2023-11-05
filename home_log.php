@@ -1,3 +1,7 @@
+<?php
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -5,29 +9,34 @@
     <Meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MusicStore | La música es tu mejor compañía</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="/css/styles_home.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="css/styles_home.css">
 </head>
 <body>
 
     <header class="header">
         <div class="menu container">
-            <a href="#" class="logo">MusicStore</a>
+            <a class="logo">La nota mala</a>
+            <a class="logo">
+            <?php
+                    echo $_SESSION["nombre"];
+                ?>
+            </a>
             <input type="checkbox" id="menu" />
-            <label for="menu"><img src="/images/menu.svg" class="menu-icono" alt=""></label>
+            <label for="menu"><img src="images/menu.svg" class="menu-icono" alt=""></label>
 
             <nav class="navbar">
                 <ul>
                     <li><a href="#">Inicio</a></li>
-                    <li><a href="#">Productos</a></li>
-                    <li><a href="/js/login.html" target="_blank">Iniciar sesión</a></li>
+                    <li><a href="#lista-1">Productos</a></li>
                     <li><a href="#">Visítanos</a></li>
+                    <li><a href="php/clients/close_session.php">Salir</a></li>
                 </ul>
             </nav>
             <div>
                 <ul>
                     <li class="submenu">
-                        <img src="/images/car.svg" id="img-carrito" alt="">
+                        <img src="images/car.svg" id="img-carrito" alt="">
                         <div id="carrito">
                             <table id="lista-carrito">
                                 <thead>
@@ -41,6 +50,7 @@
                                 <tbody></tbody>
                             </table>
                             <a href="#" id="vaciar-carrito" class="btn-3">Vaciar carrito</a>
+                            <a href="#" id="comprar-producto" class="btn-3">Comprar Ahora</a>
                         </div>
                     </li>
                 </ul>
@@ -61,7 +71,7 @@
                                 <a href="#" class="btn-1">Información</a>
                             </div>
                             <div class="header-img">
-                                <img src="/images/gibson_lp.png" alt="">
+                                <img src="images/gibson_lp.png" alt="">
                             </div>
                         </div>
                     </div>
@@ -76,7 +86,7 @@
                                 <a href="#" class="btn-1">Información</a>
                             </div>
                             <div class="header-img">
-                                <img src="/images/gibson_sg.png" alt="">
+                                <img src="images/gibson_sg.png" alt="">
                             </div>
                         </div>
                     </div>
@@ -91,7 +101,7 @@
                                 <a href="#" class="btn-1">Información</a>
                             </div>
                             <div class="header-img">
-                                <img src="/images/epiphone_casino.png" alt="">
+                                <img src="images/epiphone_casino.png" alt="">
                             </div>
                         </div>
                     </div>
@@ -107,7 +117,13 @@
     <hr>
     <section class="promos container" id="lista-1">
         <h2>Promociones</h2>
+
         <div class="categories">
+
+            <?php 
+                include "php/clients/display_prod.php"
+            ?>
+
             <div class="categorie">
                 <div class="categorie-1">
                     <h3>Promoción 1</h3>
@@ -118,7 +134,7 @@
                     <a href="#" class="agregar-carrito btn-3" data-id="1">Agregar al carrito</a>
                 </div>
                 <div class="categorie-img">
-                    <img src="/images/fender_strato.png" alt="">
+                    <img src="images/fender_strato.png" alt="">
                 </div>
             </div>
 
@@ -132,7 +148,7 @@
                     <a href="#" class="agregar-carrito btn-3" data-id="2">Agregar al carrito</a>
                 </div>
                 <div class="categorie-img">
-                    <img src="/images/fender_telecaster.png" alt="">
+                    <img src="images/fender_telecaster.png" alt="">
                 </div>
             </div>
 
@@ -146,7 +162,7 @@
                     <a href="#" class="agregar-carrito btn-3" data-id="3">Agregar al carrito</a>
                 </div>
                 <div class="categorie-img">
-                    <img src="/images/jackson_black.png" alt="">
+                    <img src="images/jackson_black.png" alt="">
                 </div>
             </div>
 
@@ -160,7 +176,7 @@
                     <a href="#" class="agregar-carrito btn-3" data-id="4">Agregar al carrito</a>
                 </div>
                 <div class="categorie-img">
-                    <img src="/images/ibanez_gio.png" alt="">
+                    <img src="images/ibanez_gio.png" alt="">
                 </div>
             </div>
         </div>
@@ -173,7 +189,7 @@
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
                     <div class="product">
-                        <img src="/images/bateria_lm.png" alt="">
+                        <img src="images/bateria_lm.png" alt="">
                         <div class="product-txt">
                             <h3>Bateria LM</h3>
                             <p>Bateria acustica</p>
@@ -185,7 +201,7 @@
 
                 <div class="swiper-slide">
                     <div class="product">
-                        <img src="/images/puas_boss.jpg" alt="">
+                        <img src="images/puas_boss.jpg" alt="">
                         <div class="product-txt">
                             <h3>Plumillas Boss</h3>
                             <p>Paquete de 10 plumillas Boss</p>
@@ -197,7 +213,7 @@
 
                 <div class="swiper-slide">
                     <div class="product">
-                        <img src="/images/kit_guit_doner.jpg" alt="">
+                        <img src="images/kit_guit_doner.jpg" alt="">
                         <div class="product-txt">
                             <h3>Kit de guitarra eléctrica</h3>
                             <p>Kit de la marca Doner</p>
@@ -209,7 +225,7 @@
 
                 <div class="swiper-slide">
                     <div class="product">
-                        <img src="/images/kit_guit2.jpg" alt="">
+                        <img src="images/kit_guit2.jpg" alt="">
                         <div class="product-txt">
                             <h3>Kit de guitarra eléctrica</h3>
                             <p>Kit de guitarra de la marca Doner</p>
@@ -232,7 +248,7 @@
 
                 <div class="swiper-slide">
                     <div class="product">
-                        <img src="/images/bateria_lm.png" alt="">
+                        <img src="images/bateria_lm.png" alt="">
                         <div class="product-txt">
                             <h3>Bateria LM</h3>
                             <p>Bateria acustica</p>
@@ -244,7 +260,7 @@
 
                 <div class="swiper-slide">
                     <div class="product">
-                        <img src="/images/puas_boss.jpg" alt="">
+                        <img src="images/puas_boss.jpg" alt="">
                         <div class="product-txt">
                             <h3>Plumillas Boss</h3>
                             <p>Paquete de 10 plumillas Boss</p>
@@ -256,7 +272,7 @@
 
                 <div class="swiper-slide">
                     <div class="product">
-                        <img src="/images/kit_guit_doner.jpg" alt="">
+                        <img src="images/kit_guit_doner.jpg" alt="">
                         <div class="product-txt">
                             <h3>Kit de guitarra eléctrica</h3>
                             <p>Kit de la marca Doner</p>
@@ -268,7 +284,7 @@
 
                 <div class="swiper-slide">
                     <div class="product">
-                        <img src="/images/kit_guit2.jpg" alt="">
+                        <img src="images/kit_guit2.jpg" alt="">
                         <div class="product-txt">
                             <h3>Kit de guitarra eléctrica</h3>
                             <p>Kit de guitarra de la marca Doner</p>
@@ -335,6 +351,6 @@
         </div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
-    <script src="script.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>

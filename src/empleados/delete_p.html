@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Borrar cliente</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="../../css/styles_login_register.css">
+</head>
+<body>
+    <a class="button" href="plataforma.html">Volver</a>
+    <a class="button" href="../login_p.html">Log out</a>
+    <div class="form_registro">
+        <h1>Borrado</h1>
+        <form id="myForm">
+            <div class="user">
+                <input type="text" name="id_p" placeholder="Id producto" required>
+            </div>
+            <input type="submit" value="Eliminar">
+            <div class="tablas">
+                <a href="show_products.html" class="link__tabla">Productos</a>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#myForm').on('submit', function(event) {
+                event.preventDefault(); // Evitar la presentación del formulario
+                var formData = $(this).serialize(); // Serializar datos del formulario
+                $.ajax({
+                    type: 'POST',
+                    url: '../../php/empleado/erase_p.php',
+                    data: formData,
+                    dataType: 'json', // Espera una respuesta JSON
+                    success: function(response) {
+                        if (response.success) {
+                            alert(response.message);
+                        } else {
+                            alert('Error: ' + response.message);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        alert('Error en la solicitud AJAX: ' + error);
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+</body>
+</html>
