@@ -13,7 +13,8 @@ CREATE ROLE empleado WITH LOGIN PASSWORD 'esclavo1234';
 #PARA LAS BASES DE DATOS
 
 CREATE TABLE cliente (
-    id SERIAL PRIMARY KEY, nombre VARCHAR(50) NOT NULL,
+    id SERIAL PRIMARY KEY, 
+    nombre VARCHAR(50) NOT NULL,
     p_apellido VARCHAR(50),
     s_apellido VARCHAR(50),
     rfc VARCHAR(15) UNIQUE,
@@ -33,6 +34,7 @@ CREATE TABLE empleado (
     p_apellido VARCHAR(50) NOT NULL, 
     s_apellido VARCHAR(50) NOT NULL,
     rfc VARCHAR(13) UNIQUE,
+    puesto INT,
     sucursal INTEGER NOT NULL,
     CONSTRAINT sucursal_referencia FOREIGN KEY(sucursal) REFERENCES sucursal(id), CONSTRAINT puesto_referencia FOREIGN KEY(puesto) REFERENCES puesto(id)
 );
@@ -55,10 +57,12 @@ dia VARCHAR(10)
 );
 
 
-CREATE TABLE sucursales (
+CREATE TABLE sucursal (
     id VARCHAR(20) PRIMARY KEY,
     nombre VARCHAR(30),
-    direccion VARCHAR(50)
+    colonia VARCHAR(50),
+    ciudad VARCHAR(50),
+    codigo_postal VARCHAR(50)
 );
 
 CREATE TABLE producto (
@@ -72,7 +76,8 @@ CREATE TABLE producto (
     existencia INTEGER,
     apartado INTEGER,
     proveedor INTEGER,
-    Categoria VARCHAR(50),
+    categoria VARCHAR(50),
+    image_url VARCHAR(30),
     CONSTRAINT proveedores FOREIGN KEY (proveedor) REFERENCES proveedor(id)
 );
 
@@ -95,5 +100,10 @@ CREATE TABLE proveedor (
 CREATE TABLE puesto(
     id SERIAL PRIMARY KEY,
     nombre VARCHAR(50),
-    descripcion VARCHAR(250)
 );
+
+CREATE table rol(
+    id_puesto INT,
+    tarea VARCHAR(20),
+    CONSTRAINT tarea_rol FOREIGN KEY(id_puesto) REFERENCES puesto(id)
+)
