@@ -27,11 +27,12 @@ CREATE TABLE cliente (
     password VARCHAR(30)
 );
 
-CREATE TABLE empleado (                     --> NO TERMINADA
+CREATE TABLE empleado (         
+    id SERIAL PRIMARY KEY,         
     nombre VARCHAR(100) NOT NULL,
     p_apellido VARCHAR(50) NOT NULL, 
     s_apellido VARCHAR(50) NOT NULL,
-    rfc VARCHAR(13) PRIMARY KEY,
+    rfc VARCHAR(13) UNIQUE,
     puesto INTEGER NOT NULL,
     dia VARCHAR(30), hora VARCHAR(30), 
     sucursal INTEGER NOT NULL,

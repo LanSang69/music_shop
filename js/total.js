@@ -10,4 +10,3 @@ calcularT.addEventListener("click", (event) => {
         total.style.display = 'none';
     }
 });
-
