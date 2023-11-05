@@ -37,6 +37,8 @@
                 <ul>
                     <li class="submenu">
                         <img src="images/car.svg" id="img-carrito" alt="">
+                        <span id="cart-count" style="color: #FFFF;">Carrito: <span id="cart-count-value">0</span></span>
+
                         <div id="carrito">
                             <table id="lista-carrito">
                                 <thead>
@@ -49,8 +51,8 @@
                                 </thead>
                                 <tbody></tbody>
                             </table>
-                            <a href="#" id="vaciar-carrito" class="btn-3">Vaciar carrito</a>
-                            <a href="#" id="comprar-producto" class="btn-3">Comprar Ahora</a>
+                            <a href="#" id="vaciar-carrito" class="btn-3">Vaciar</a>
+                            <a href="php/clients/comprar.php" id="comprar-producto" class="btn-3">Comprar</a>
                         </div>
                     </li>
                 </ul>

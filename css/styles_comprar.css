@@ -14,7 +14,6 @@ body{
 }
 
 .container{
-    max-width: 1200px;
     margin: 0 auto;
 }
 
@@ -54,95 +53,6 @@ body{
 
 .swiper-pagination-bullet-active{
     background-color: #7270ec;
-}
-
-.menu{
-    position: fixed;
-    background-color: #242430;
-    opacity: 0.8;
-    top: 0;
-    left: 0;
-    right: 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    z-index: 1000;
-}
-
-.logo {
-    font-size: 25px;
-    color: #7270ec;
-    text-transform: uppercase;
-    font-weight: 800;
-}
-
-.login {
-    font-size: 25px;
-    color: #7270ec;
-    text-transform: uppercase;
-    font-weight: 800;
-}
-
-.menu .navbar ul li{
-    position: relative;
-    float: left;
-}
-
-.menu .navbar ul li a{
-    font-size: 18px;
-    padding: 20px;
-    color: #FEFFFF;
-    display: block;
-}
-
-.menu .navbar ul li a:hover{
-    color: #7270ec;
-}
-
-#menu{
-    display: none;
-}
-
-.menu-icono{
-    width: 25px;
-}
-
-.menu label{
-    cursor: pointer;
-    display: none;
-}
-
-.submenu{
-    position: relative;
-}
-
-.submenu #carrito{
-    display: none;
-    right: 0;
-    top: 100%;
-    z-index: 1;
-    background-color: #4E4B5076;
-    padding: 20px;
-    min-width: 400px;
-}
-
-.submenu:hover #carrito{
-    display: block;
-    position: absolute;
-    right: 0;
-    top: 100%;
-    z-index: 1;
-    background-color: #4E4B5076;
-    padding: 20px;
-    min-width: 400px;
-}
-
-.tabla{
-    width: 100%;
-}
-
-th, td{
-    color: #FEFFFF;
 }
 
 .borrar{
@@ -187,15 +97,25 @@ th, td{
 }
 
 .existencia{
-    width: 160px;
+    color:#747474;
+    width:140px;
     border-style:solid;
     border-color: #7270ec;
     border-width: 1px;
     padding: 10px;
+    margin: 0 auto;
 }
 
 .existenciaDB{
     font-size: large;
+}
+
+.cantidad{
+    color: #FFFF;
+}
+
+.total{
+    display:none;
 }
 
 .price-1{
@@ -211,7 +131,6 @@ th, td{
 }
 
 .btn-1{
-    display: inline-block;
     background-color: #7270ec;
     color: #FEFFFF;
     font-size: 16px;
@@ -229,49 +148,72 @@ hr{
 }
 
 .promos{
-    padding: 50px 0;
     text-align: center;
 }
 
 .promos h2{
     font-size: 50px;
     color: #FEFFFF;
-    margin-bottom: 35px;
+    margin-bottom: 15px;
+}
+.categories {
+    justify-content: center;
+    align-items: center; 
+    width: 40%; 
+    margin: 0 auto; 
+    text-align: center; 
+    border-style: solid;
+    border-color: #7270ec;
+    border-width: 2px;
 }
 
-.categories{
-    text-align: left;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-}
-
-.categorie{
-    display: flex;
+.categorie {
+    text-align: center;
     align-items: center;
-    padding: 35px;
+    padding: 20px;
 }
 
-.categorie img{
+.categorie-img {
     width: 200px;
+    margin: 0 auto; /* Center the image horizontally */
+    text-align: center; /* Center the text within the image */
 }
 
-.categorie-1{
+
+.categorie-img{
+    align-items: center;
+}
+
+.icons_buy{
+    margin: 15px;
+    width:30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.categorie-1 {
     width: 50%;
+    margin: 0 auto; /* Center horizontally */
+    text-align: center;
 }
 
-.categorie-1 h3{
+.categorie-1 h3 {
+    padding: 10px;
     color: #FEFFFF;
     font-size: 22px;
     font-weight: 600;
 }
 
-.categorie-1 p{
+.categorie-1 p {
     color: #747b8f;
     font-size: 18px;
 }
 
-.categorie-img{
-    width: 50%;
+.alter_cantidad{
+    width: 250px;
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
 }
 
 .products{
@@ -310,9 +252,8 @@ hr{
 }
 
 .btn-3{
-    display: inline-block;
     padding: 10px 25px;
-    font-size: 14px;
+    font-size: 17px;
     color: #FEFFFF;
     border: 1px solid #7270ec;
     border-radius: 25px;
@@ -440,7 +381,7 @@ hr{
     }
 
     .categories{
-        grid-template-columns: repeat(1, 1fr);
+        grid-template-rows: repeat(1, 1fr);
     }
 
     .categorie{
@@ -477,4 +418,19 @@ hr{
     .link{
         width: 100%;
     }
+}
+
+
+.button{
+    position:relative;
+    margin: 20px;
+    margin-bottom: 50px;
+    top:20px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    cursor: pointer;
 }

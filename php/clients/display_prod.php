@@ -8,7 +8,9 @@ $password = "LanSan2004*";
 $connection = pg_connect("host=$host port=$port dbname=$dbname user=$user password=$password");
 
 if ($connection) {
-    $result = pg_query($connection, "SELECT id_producto, producto.nombre AS nombre, tipo_producto, marca, precio_venta, descripcion, modelo, existencia, image_url, apartado, proveedor.nombre AS proveedor, categoria FROM producto JOIN proveedor ON proveedor=proveedor.id");
+    $result = pg_query($connection, "SELECT id_producto, producto.nombre AS nombre, tipo_producto, 
+    marca, precio_venta, descripcion, modelo, existencia, image_url, apartado, proveedor.nombre AS proveedor, 
+    categoria FROM producto JOIN proveedor ON proveedor=proveedor.id");
 
 
     while ($row = pg_fetch_assoc($result)) {
