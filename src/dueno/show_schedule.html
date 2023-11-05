@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Días</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="../../css/show_table.css" />
+</head>
+
+<body>
+    <!-- Include jQuery for AJAX (you can include it from a CDN) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <a class="button" href="#" id="volver">Volver</a>
+    <div id="result" class="table">
+        <!-- Aquí se imprimirá la tabla -->
+    </div>
+
+    <script>
+        // Use AJAX to load data from the first PHP script
+        $.ajax({
+            url: '../../php/dueno/show_schedule.php',
+            type: 'GET',
+            success: function (response) {
+                $('#result').html(response);
+            },
+            error: function () {
+                $('#result').html('An error occurred while loading the first PHP script.');
+            }
+        });
+    </script>
+
+    <script>
+        // Agregar un evento click al enlace "Volver"
+        document.getElementById('volver').addEventListener('click', function (event) {
+            event.preventDefault(); // Evitar la acción predeterminada del enlace
+            window.history.back(); // Retroceder a la página anterior
+        });
+    </script>
+</body>
+
+</html>

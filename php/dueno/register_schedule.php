@@ -8,15 +8,13 @@ $password = "LanSan2004*";
 $connection = pg_connect("host=$host port=$port dbname=$dbname user=$user password=$password");
 
 if ($connection) {
-    $nombre = $_POST['nombre'];
-    $apellido1 = $_POST['apellido1'];
-    $apellido2 = $_POST['apellido2'];
-    $rfc = $_POST['rfc'];
-    $puesto = $_POST['puesto'];
-    $sucursal = $_POST['sucursal'];
+    $id = $_POST['id'];
+    $dia = $_POST['dia'];
+    $hora_e = $_POST['hora_e'];
+    $hora_s = $_POST['hora_s'];
 
-    $query = "INSERT INTO empleado (nombre, p_apellido, s_apellido, rfc, puesto, sucursal)
-              VALUES ('$nombre', '$apellido1', '$apellido2', '$rfc', '$puesto', '$sucursal')";
+    $query = "INSERT INTO horario (id_empleado, dia, hora_entrada, hora_salida)
+              VALUES ('$id', '$dia', '$hora_e', '$hora_s')";
 
     $result = pg_query($connection, $query);
 

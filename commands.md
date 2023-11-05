@@ -28,9 +28,11 @@ CREATE TABLE cliente (
 );
 
 CREATE TABLE empleado (
+    id SERIAL PRIMARY KEY,         
     nombre VARCHAR(100) NOT NULL,
-    p_apellido VARCHAR(50) NOT NULL, s_apellido VARCHAR(50) NOT NULL,
-    rfc VARCHAR(13) PRIMARY KEY,
+    p_apellido VARCHAR(50) NOT NULL, 
+    s_apellido VARCHAR(50) NOT NULL,
+    rfc VARCHAR(13) UNIQUE,
     puesto INTEGER NOT NULL,
     dia VARCHAR(30), hora VARCHAR(30), 
     sucursal INTEGER NOT NULL,
@@ -73,4 +75,10 @@ CREATE TABLE proveedor (
     segundo_apellido VARCHAR(50),
     telefono_oficina VARCHAR(20),
     telefono_celular VARCHAR(20) NOT NULL
+);
+
+CREATE TABLE puesto(
+    id SERIAL PRIMARY KEY,
+    nombre VARCHAR(50),
+    descripcion VARCHAR(250)
 );

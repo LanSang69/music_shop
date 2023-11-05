@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Borrar cliente</title>
+    <title>MusicStore | Registro</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
     <link rel="stylesheet" href="../../css/styles_login_register.css">
 </head>
@@ -12,19 +12,26 @@
     <a class="button" href="plataforma_admin.html">Volver</a>
     <a class="button" href="../login_p.html">Log out</a>
     <div class="form_registro">
-        <h1>Borrado</h1>
+        <h1>Registro</h1>
         <form id="myForm">
             <div class="user">
-                <input type="text" name="rfc" placeholder="RFC" required>
+                <input type="text" name="id" placeholder="Id empleado" required>
             </div>
-            <input type="submit" value="Eliminar">
+            <div class="user">
+                <input type="text" name="dia" placeholder="Dia" required>
+            </div>
+            <div class="user">
+                <input type="text" name="hora_e" placeholder="Hora de entrada" required>
+            </div>
+            <div class="user">
+                <input type="text" name="hora_s" placeholder="Hora de salida" required>
+            </div>
+            <input type="submit" value="Registrar">
             <div class="tablas">
                 <a href="show_employees.html" class="link__tabla">Empleados</a>
                 <a href="show_sucursal.html" class="link__tabla">Sucursales</a>
                 <a href="show_puesto.html" class="link__tabla">Puestos</a>
-                <a href="show_schedule.html" class="link__tabla">Horarios</a>
                 <a href="show_dias.html" class="link__tabla">Días laborales</a>
-                <a href="consult.php" class="link__tabla">Hacer una consulta</a>
             </div>
         </form>
     </div>
@@ -38,7 +45,7 @@
                 var formData = $(this).serialize(); // Serializar datos del formulario
                 $.ajax({
                     type: 'POST',
-                    url: '../../php/dueno/erase_e.php',
+                    url: '../../php/dueno/register_schedule.php',
                     data: formData,
                     dataType: 'json', // Espera una respuesta JSON
                     success: function(response) {

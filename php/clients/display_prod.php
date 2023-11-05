@@ -8,15 +8,25 @@ $password = "LanSan2004*";
 $connection = pg_connect("host=$host port=$port dbname=$dbname user=$user password=$password");
 
 if ($connection) {
-    $result = pg_query($connection, "SELECT id_producto, producto.nombre AS nombre, tipo_producto, marca, precio_venta, descripcion, modelo, existencia, image_url, apartado, proveedor.nombre AS proveedor, categoria FROM producto JOIN proveedor ON proveedor=proveedor.id");
+    $result = pg_query($connection, "SELECT id_producto, producto.nombre AS nombre, tipo_producto, 
+    marca, precio_venta, descripcion, modelo, existencia, image_url, apartado, proveedor.nombre AS proveedor, 
+    categoria FROM producto JOIN proveedor ON proveedor=proveedor.id");
 
 
     while ($row = pg_fetch_assoc($result)) {
+        if ($row["existencia"] >= 15) {
+            $existenciaC = '#00FF00';
+        } else {
+            $existenciaC = '#FF0000';
+        }
+
         echo '<div class="categorie">';
         echo '<div class="categorie-1">';
-        echo '<h3 class="product-title">' . $row["nombre"] . '</h3>';
+        echo '<h3 class="product-title" id="' . $row["id_producto"] . '">' . $row["nombre"] . '</h3>';
         echo '<div class="prices">';
         echo '<p class="precio">$' . $row["precio_venta"] . '</p>';
+        echo '<br>';
+        echo '<p class="existencia">Disponibles: <span class="existenciaDB" style="color:' . $existenciaC . '">' . $row["existencia"] . '</span></p>';
         echo '</div>';
         echo '<a href="#" class="agregar-carrito btn-3" data-id="' . $row["id_producto"] . '">Agregar al carrito</a>';
         echo '</div>';
