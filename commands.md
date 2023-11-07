@@ -114,19 +114,19 @@ CREATE table rol(
     id_puesto INT,
     tarea VARCHAR(20),
     CONSTRAINT tarea_rol FOREIGN KEY(id_puesto) REFERENCES puesto(id)
-)
+);
 
 CREATE TABLE pago (
     id SERIAL PRIMARY KEY,
     tipo_pago VARCHAR(30)
-)
+);
 
 CREATE TABLE datos_tarjeta(
     id_cliente INTEGER,
     numero_tarjeta VARCHAR(16),
-    vencimiento VARCHAR(5)
-    CONSTRAINT cliente_tarjeta FOREIGN KEY(id_cliente) REFERENCES cliente(id),
-)
+    vencimiento VARCHAR(5),
+    CONSTRAINT cliente_tarjeta FOREIGN KEY(id_cliente) REFERENCES cliente(id)
+);
 
 CREATE TABLE venta (
     id SERIAL PRIMARY KEY,
@@ -137,10 +137,10 @@ CREATE TABLE venta (
     sucursal_id INTEGER,
     empleado_id INTEGER,
     CONSTRAINT cliente_compra FOREIGN KEY(id_cliente) REFERENCES cliente_mostrador(id),
-    CONSTRAINT pago FOREIGN KEY(tipo_pago) REFERENCES metodo_pago(id),
+    CONSTRAINT pago FOREIGN KEY(tipo_pago) REFERENCES pago(id),
     CONSTRAINT venta_sucursal FOREIGN KEY(sucursal_id) REFERENCES sucursal(id),
-    CONSTRAINT venta_empleado FOREIGN KEY(empleado_id) REFERENCES empleado(id),
-)
+    CONSTRAINT venta_empleado FOREIGN KEY(empleado_id) REFERENCES empleado(id)
+);
 
 CREATE TABLE venta_producto (
     id_venta INTEGER,
@@ -148,5 +148,5 @@ CREATE TABLE venta_producto (
     cantidad INT,
     precio_unitario DECIMAL(10,2),
     CONSTRAINT venta_producto FOREIGN KEY(id_venta) REFERENCES venta(id),
-    CONSTRAINT producto_vendido FOREIGN KEY(id_producto) REFERENCES producto(id_producto),
-)
+    CONSTRAINT producto_vendido FOREIGN KEY(id_producto) REFERENCES producto(id_producto)
+);

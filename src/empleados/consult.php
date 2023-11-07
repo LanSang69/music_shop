@@ -18,8 +18,8 @@
     $host = "localhost";
     $port = "5432";
     $dbname = "music_shop";
-    $user = "admin";
-    $password = "admin1234";
+    $user = "empleado";
+    $password = "esclavo1234";
 
     $connection = pg_connect("host=$host port=$port dbname=$dbname user=$user password=$password");
 

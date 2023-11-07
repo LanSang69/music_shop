@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MusicStore | Agregar Producto</title>
+    <title>MusicStore | Agregar Cliente</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
     <link rel="stylesheet" href="../../css/styles_login_register.css">
 </head>
 <body>
-    <a class="button" href="plataforma.html">Volver</a>
+    <a class="button" href="#" id="volver">Volver</a>
     <a class="button" href="../login_p.html">Log out</a>
     <div class="form_registro">
         <h1>Producto</h1>
@@ -18,29 +18,20 @@
                 <input type="text" name="nombre" placeholder="Nombre" required>
             </div>
 	        <div class="user">
-                <input type="text" name="apellido1" placeholder="Primer apellido" required>
+                <input type="text" name="apellido1" placeholder="Primer apellido">
             </div>
             <div class="user">
-                <input type="text" name="apellido2" placeholder="Segundo apellido" required>
+                <input type="text" name="apellido2" placeholder="Segundo apellido">
             </div>
             <div class="user">
-                <input type="text" name="rfc" placeholder="RFC" required>
-            </div>
-            <div class="user">
-                <input type="text" name="puesto" placeholder="puesto" required>
-            </div>
-            <div class="user">
-                <input type="text" name="dia" placeholder="dias laborales" required>
-            </div>
-            <div class="user">
-                <input type="text" name="hora" placeholder="horario" required>
-            </div>
-            <div class="user">
-                <input type="text" name="sucursal" placeholder="Id de la sucursal" required>
+                <input type="text" name="celular" placeholder="Teléfono" required>
             </div>
             <input type="submit" value="Registrar">
             <div class="tablas">
                 <a href="show_products.html" class="link__tabla">Productos</a>
+                <a href="show_proovedores.html" class="link__tabla">Proveedores</a>
+                <a href="consult.php" class="link__tabla">Consultar</a>
+                <a href="show_cliente.html" class="link__tabla">Clientes</a>
             </div>
         </form>
     </div>
@@ -54,7 +45,7 @@
                 var formData = $(this).serialize(); // Serializar datos del formulario
                 $.ajax({
                     type: 'POST',
-                    url: '../../php/dueno/register_e.php',
+                    url: '../../php/empleado/add_client.php',
                     data: formData,
                     dataType: 'json', // Espera una respuesta JSON
                     success: function(response) {
@@ -71,6 +62,14 @@
             });
         });
     </script>
+
+<script>
+    // Agregar un evento click al enlace "Volver"
+    document.getElementById('volver').addEventListener('click', function (event) {
+        event.preventDefault(); // Evitar la acción predeterminada del enlace
+        window.history.back(); // Retroceder a la página anterior
+    });
+</script>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
 </body>

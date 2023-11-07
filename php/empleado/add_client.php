@@ -11,18 +11,10 @@ if ($connection) {
     $nombre = $_POST['nombre'];
     $apellido1 = $_POST['apellido1'];
     $apellido2 = $_POST['apellido2'];
-    $rfc = $_POST['rfc'];
-    $puesto = $_POST['puesto'];
-    $sucursal = $_POST['sucursal'];
-    $sucursalMAP= [
-        'chalco' => 1,
-        'roma' => 2,
-    ];
+    $celular = $_POST['celular'];
 
-    $db_sucursal = $sucursalMAP[$sucursal];
-
-    $query = "INSERT INTO empleado (nombre, p_apellido, s_apellido, rfc, puesto, sucursal)
-              VALUES ('$nombre', '$apellido1', '$apellido2', '$rfc', '$puesto', '$db_sucursal')";
+    $query = "INSERT INTO cliente_mostrador (nombre, p_apellido, s_apellido, celular)
+              VALUES ('$nombre', '$apellido1', '$apellido2', '$celular')";
 
     $result = pg_query($connection, $query);
 
