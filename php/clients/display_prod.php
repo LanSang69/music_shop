@@ -10,7 +10,7 @@ $connection = pg_connect("host=$host port=$port dbname=$dbname user=$user passwo
 if ($connection) {
     $result = pg_query($connection, "SELECT id_producto, producto.nombre AS nombre, tipo_producto, 
     marca, precio_venta, descripcion, modelo, existencia, image_url, apartado, proveedor.nombre AS proveedor, 
-    categoria FROM producto JOIN proveedor ON proveedor=proveedor.id");
+    categoria FROM producto JOIN proveedor ON proveedor=proveedor.id ORDER BY id_producto");
 
 
     while ($row = pg_fetch_assoc($result)) {
