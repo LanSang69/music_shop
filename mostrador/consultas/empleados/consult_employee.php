@@ -23,6 +23,8 @@
         </div>
         <div class="buscar">
             <a href="add_employee.php">Nuevo</a>
+            <a class="button" href="#" id="volver">Volver</a>
+
         </div>
     </div>
 
@@ -77,6 +79,14 @@
                 ?>
         </table>
     </div>
+
+    <script>
+    // Agregar un evento click al enlace "Volver"
+    document.getElementById('volver').addEventListener('click', function(event) {
+        event.preventDefault(); // Evitar la acción predeterminada del enlace
+        window.history.back(); // Retroceder a la página anterior
+    });
+    </script>
 
 </body>
 

@@ -9,6 +9,7 @@
 </head>
 
 <body>
+
     <div class="busqueda">
         <div class="buscar">
             <form action="buscar_p.php" method="post">
@@ -23,6 +24,7 @@
         </div>
         <div class="buscar">
             <a href="add_product.php">Nuevo</a>
+            <a class="button" href="#" id="volver">Volver</a>
         </div>
     </div>
 
@@ -48,19 +50,10 @@
                 <td><?php echo $row['nombre'] ?></td>
                 <td><?php echo $row['tipo_producto'] ?></td>
                 <td>
-                    <a href="edit_p.php?
-                    id=<?php echo $row['id']?> &
-                    nombre=<?php echo $row['nombre']?> &
-                    p_ap=<?php echo $row['p_apellido']?> &
-                    s_ap=<?php echo $row['s_apellido']?> &
-                    rfc=<?php echo $row['rfc']?> &
-                    puesto=<?php echo $row['puesto_nombre']?> &
-                    sucursal=<?php echo $row['nombre_sucursal']?>
-                    ">Editar</a>
-                    <a href="delete_p.php? id=<?php echo $row['id']?>">Eliminar</a>
+                    <a href="delete_p.php? id=<?php echo $row['id_producto']?>">Eliminar</a>
                     <a href="show_all.php? 
                     id=<?php echo $row['id']?>
-                    ">Horarios</a>
+                    ">Más</a>
                 </td>
             </tr>
             <?php 
@@ -69,6 +62,14 @@
                 ?>
         </table>
     </div>
+
+    <script>
+        // Agregar un evento click al enlace "Volver"
+        document.getElementById('volver').addEventListener('click', function (event) {
+            event.preventDefault(); // Evitar la acción predeterminada del enlace
+            window.history.back(); // Retroceder a la página anterior
+        });
+    </script>
 
 </body>
 

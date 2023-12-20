@@ -1,0 +1,150 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-color: #242430;
+    font-family: 'Poppins', sans-serif;
+    height: 100vh;
+}
+
+.tablas{
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.link__tabla{
+    padding: 15px;
+}
+
+.button{
+    position:relative;
+    margin: 10px;
+    top:20px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.form_login{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    background: #fffeff;
+    border-radius: 10px;
+}
+
+.form_login h1{
+    text-align: center;
+    padding: 0 0 20px 0;
+    border-bottom: 1px solid silver;
+}
+
+.form_login form{
+    padding: 0 40px;
+    box-sizing: border-box;
+}
+
+.form_registro{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    background: #fffeff;
+    border-radius: 10px;
+}
+
+.form_registro h1{
+    text-align: center;
+    padding: 0 0 20px 0;
+    border-bottom: 1px solid silver;
+}
+
+.form_registro form{
+    padding: 0 40px;
+    box-sizing: border-box;
+}
+
+form .user{
+    position: relative;
+    border-bottom: 2px solid #adadad;
+    margin: 30px 0;
+}
+
+.user input{
+    width: 100%;
+    padding: 0 5px;
+    height: 25px;
+    font-size: 16px;
+    border: none;
+    background: none;
+    outline: none;
+}
+
+.user label{
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    color: #adadad;
+    transform: translateY(-50%);
+    font-size: 16px;
+    pointer-events: none;
+    transition: .5s;
+}
+
+.user span::before{
+    content: '';
+    position: absolute;
+    top: 40px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: #6c3483;
+    transition: .5s;
+}
+
+.user input:focus ~ label,
+.user input:focus ~ label{
+    top: -5px;
+    color: #7270ec;
+}
+
+.user input:focus ~ span::before,
+.user input:focus ~ span::before{
+    width: 100%;
+}
+
+.volver{
+    margin: -5px 0 20px 5px;
+    color: blue;
+    cursor: pointer;
+}
+
+.volver:hover{
+    text-decoration: underline;
+}
+
+input[type="submit"]{
+    width: 100%;
+    height: 50px;
+    border: 2px solid;
+    background: #7270ec;
+    border-radius: 25px;
+    font-size: 18px;
+    color: white;
+    cursor: pointer;
+    outline: none;
+    margin-bottom: 10px;
+}
+
+input[type="submit"]:hover{
+    border-color: #7270ec;
+    transition: .5s;
+}

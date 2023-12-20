@@ -22,7 +22,7 @@
             </form>
         </div>
         <div class="buscar">
-            <a href="add_employee.php">Nuevo</a>
+            <a href="add_product.php">Nuevo</a>
         </div>
     </div>
 
@@ -43,7 +43,7 @@
                 $busqueda = $_POST['buscar'];
                 $result = pg_query($connection, "SELECT id_producto, producto.nombre AS nombre, tipo_producto
                 FROM producto WHERE producto.nombre ILIKE '%$busqueda%' 
-                OR tipo_producto ILIKE '%$busqueda%'");
+                OR tipo_producto ILIKE '%$busqueda%' ORDER BY id_producto");
                 
                 while ($row = pg_fetch_assoc($result)) {
                     ?>
@@ -52,9 +52,10 @@
                 <td><?php echo $row['nombre'] ?></td>
                 <td><?php echo $row['tipo_producto'] ?></td>
                 <td>
-                    <a href="edit_emp.php">Editar</a>
-                    <a href="delete_emp.php? id=<?php echo $row['id']?>">Eliminar</a>
-                    <a href="show_schedule.php">Horarios</a>
+                    <a href="delete_p.php? id=<?php echo $row['id_producto']?>">Eliminar</a>
+                    <a href="show_all.php? 
+                    id=<?php echo $row['id']?>
+                    ">Más</a>
                 </td>
             </tr>
             <?php 

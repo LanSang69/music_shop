@@ -21,17 +21,17 @@
     if($connection){
         $id = $_GET['id'];
 
-        $query = "DELETE FROM empleado WHERE id = '$id'";
+        $query = "DELETE FROM producto WHERE id_producto = '$id'";
 
         $result = pg_query($connection, $query);
 
         if($result){
-            header("Location: consult_employee.php");
+            header("Location: consult_product.php");
         }else{
             echo "<div class='alert alert-danger'>Error al elmiminar el usuario: " . pg_last_error() . "</div>";
             echo "<script>
                     setTimeout(function() {
-                        window.location.href = 'consult_employee.php';
+                        window.location.href = 'consult_product.php';
                     }, 2000); // 2000 milliseconds = 2 seconds
                   </script>";
         }

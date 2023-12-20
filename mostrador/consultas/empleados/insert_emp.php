@@ -49,11 +49,6 @@
                   </script>";
         }else{
             echo "<div class='alert alert-danger'>Credenciales erróneas " . pg_last_error() . "</div>";
-            echo "<script>
-                    setTimeout(function() {
-                        window.location.href = 'add_employee.php';
-                    }, 2000); // 2000 milliseconds = 2 seconds
-                  </script>";
         }
     }
 ?>
