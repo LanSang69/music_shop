@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <Meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,6 +9,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css">
     <link rel="stylesheet" href="css/styles_home.css">
 </head>
+
 <body>
 
     <header class="header">
@@ -23,7 +25,6 @@
                     <li><a href="#">Inicio</a></li>
                     <li><a href="#lista-1">Productos</a></li>
                     <li><a href="login.php">Iniciar sesión</a></li>
-                    <li><a href="src/login_p.html">Soy un empleado</a></li>
                 </ul>
             </nav>
             <div>
@@ -49,67 +50,17 @@
                 </ul>
             </div>
         </div>
-
-        <div class="header-content container">
-            <div class="swiper mySwiper-1">
-                <div class="swiper-wrapper">
-
-                    <div class="swiper-slide">
-                        <div class="header-info">
-                            <div class="header-txt">
-                                <h1>Gibson Les Paul</h1>
-                                <div class="prices">
-                                    <p class="price-2">$17,399</p>
-                                </div>
-                                <a href="#" class="btn-1">Información</a>
-                            </div>
-                            <div class="header-img">
-                                <img src="images/gibson_lp.png" alt="">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="swiper-slide">
-                        <div class="header-info">
-                            <div class="header-txt">
-                                <h1>Epiphone SG</h1>
-                                <div class="prices">
-                                    <p class="price-2">$11,199</p>
-                                </div>
-                                <a href="#" class="btn-1">Información</a>
-                            </div>
-                            <div class="header-img">
-                                <img src="images/gibson_sg.png" alt="">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="swiper-slide">
-                        <div class="header-info">
-                            <div class="header-txt">
-                                <h1>Epiphone Casino</h1>
-                                <div class="prices">
-                                    <p class="price-2">$6,799</p>
-                                </div>
-                                <a href="#" class="btn-1">Información</a>
-                            </div>
-                            <div class="header-img">
-                                <img src="images/epiphone_casino.png" alt="">
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-pagination"></div>
-            </div>
-        </div>
     </header>
 
     <hr>
+    <div class="footer-scroll">
+    <a href="#footer">
+    <img src="images/flecha.png" alt="" class="flecha">
+    </a>
+    </div>
+    
     <section class="promos container" id="lista-1">
-        <h2>Promociones</h2>
+        <h2>Nuestros productos</h2>
 
         <div class="categories">
 
@@ -234,116 +185,30 @@
     </section>
 
     <hr>
-    <section class="products container" id="lista-3">
-        <h2>Productos</h2>
-        <div class="swiper mySwiper-2">
-            <div class="swiper-wrapper">
+    <footer class="footer container" id="footer">
 
-                <div class="swiper-slide">
-                    <div class="product">
-                        <img src="images/bateria_lm.png" alt="">
-                        <div class="product-txt">
-                            <h3>Bateria LM</h3>
-                            <p>Bateria acustica</p>
-                            <p class="precio">5000</p>
-                            <a href="#" class="agregar-carrito btn-3" data-id="9">Agregar al carrito</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="swiper-slide">
-                    <div class="product">
-                        <img src="images/puas_boss.jpg" alt="">
-                        <div class="product-txt">
-                            <h3>Plumillas Boss</h3>
-                            <p>Paquete de 10 plumillas Boss</p>
-                            <p class="precio">300</p>
-                            <a href="#" class="agregar-carrito btn-3" data-id="10">Agregar al carrito</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="swiper-slide">
-                    <div class="product">
-                        <img src="images/kit_guit_doner.jpg" alt="">
-                        <div class="product-txt">
-                            <h3>Kit de guitarra eléctrica</h3>
-                            <p>Kit de la marca Doner</p>
-                            <p class="precio">3000</p>
-                            <a href="#" class="agregar-carrito btn-3" data-id="11">Agregar al carrito</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="swiper-slide">
-                    <div class="product">
-                        <img src="images/kit_guit2.jpg" alt="">
-                        <div class="product-txt">
-                            <h3>Kit de guitarra eléctrica</h3>
-                            <p>Kit de guitarra de la marca Doner</p>
-                            <p class="precio">3500</p>
-                            <a href="#" class="agregar-carrito btn-3" data-id="12">Agregar al carrito</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
-        </div>
-    </section>
-
-    <footer class="footer container">
         <div class="link">
-            <h3>Lorem</h3>
-            <ul>
-                <li><a href="#">Lorem</a></li>
-                <li><a href="#">Lorem</a></li>
-                <li><a href="#">Lorem</a></li>
-                <li><a href="#">Lorem</a></li>
-            </ul>
+            <h3>Navegar por la página</h3>
+            <nav class="navbar">
+                <ul>
+                    <li><a href="#">Inicio</a></li>
+                    <li><a href="#lista-1">Productos</a></li>
+                    <li><a href="login.php">Iniciar sesión</a></li>
+                    <li><a href="src/login_p.html">Soy un empleado</a></li>
+                </ul>
+            </nav>
         </div>
 
         <div class="link">
-            <h3>Lorem</h3>
-            <ul>
-                <li><a href="#">Lorem</a></li>
-                <li><a href="#">Lorem</a></li>
-                <li><a href="#">Lorem</a></li>
-                <li><a href="#">Lorem</a></li>
-            </ul>
-        </div>
-
-        <div class="link">
-            <h3>Lorem</h3>
-            <ul>
-                <li><a href="#">Lorem</a></li>
-                <li><a href="#">Lorem</a></li>
-                <li><a href="#">Lorem</a></li>
-                <li><a href="#">Lorem</a></li>
-            </ul>
-        </div>
-
-        <div class="link">
-            <h3>Lorem</h3>
-            <ul>
-                <li><a href="#">Lorem</a></li>
-                <li><a href="#">Lorem</a></li>
-                <li><a href="#">Lorem</a></li>
-                <li><a href="#">Lorem</a></li>
-            </ul>
-        </div>
-
-        <div class="link">
-            <h3>Lorem</h3>
-            <p>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eius,
-                cumque. Eos, amet quia dignissimos quae, excepturi temporibus iste
-                sunt sapiente officiis optio adipisci magni quasi suscipit vero
-                nulla culpa inventore.
+            <h3>Acerca de la página</h3>
+            <p>La nota mala es una idea propuesta para el manejo de una tienda de música d emanera efectiva utilizando
+                conocimientos en bases de datos y en desarrollo web, enfocados sobre todo en php <br> <br>
+                El presente proyecto se entrega para la materia de base de datos con el profesor Ulises Vélez Saldaña con el grupo 3CM5
             </p>
         </div>
+
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
-    <script src="js/script.js"></script>
 </body>
+
 </html>

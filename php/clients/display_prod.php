@@ -10,7 +10,7 @@ $connection = pg_connect("host=$host port=$port dbname=$dbname user=$user passwo
 if ($connection) {
     $result = pg_query($connection, "SELECT id_producto, producto.nombre AS nombre, tipo_producto, 
     marca, precio_venta, descripcion, modelo, existencia, image_url, apartado, proveedor.nombre AS proveedor, 
-    categoria FROM producto JOIN proveedor ON proveedor=proveedor.id ORDER BY id_producto");
+    categoria, marca, modelo, descripcion FROM producto JOIN proveedor ON proveedor=proveedor.id ORDER BY id_producto");
 
 
     while ($row = pg_fetch_assoc($result)) {
@@ -29,11 +29,35 @@ if ($connection) {
         echo '<p class="existencia">Disponibles: <span class="existenciaDB" style="color:' . $existenciaC . '">' . $row["existencia"] . '</span></p>';
         echo '</div>';
         echo '<a href="#" class="agregar-carrito btn-3" data-id="' . $row["id_producto"] . '">Agregar al carrito</a>';
+
+        echo '<ul>';        
+        echo '<li class="submenu">';
+        echo '<a href="#" class="btn-1">Información</a>';
+        echo '<div id="carrito">';
+
+        echo '<table id="lista-info" class="espacio">';
+        echo '<thead>';
+        echo '<tr>';
+        echo '<th>Descripción: <p class="existenciaT">' . $row["descripcion"] .'</th>';
+        echo '</tr>';
+        echo '<tr>';
+        echo '<th>Marca: <p class="existenciaT">' .$row["marca"] .'</th>';
+        echo '</tr>';
+        echo '<tr>';
+        echo '<th>Modelo: <p class="existenciaT">' .$row["modelo"] .'</th>';
+        echo '</tr>';
+        echo '</thead>';
+        echo '</table>';
+
+        echo '</div>';
+        echo '</li>';
+        echo '</ul>';
         echo '</div>';
         echo '<div class="categorie-img">';
         echo '<img src="' . $row["image_url"] . '" alt="' . $row["product_name"] . '">';
         echo '</div>';
         echo '</div>';
+        
     }
 
 	pg_close($connection);

@@ -1,11 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
 *{
+    font-family: "Poppins", sans-serif;
     margin: 0;
     padding: 0;
+    scroll-padding-top: 2rem;
+    scroll-behavior: smooth;
     box-sizing: border-box;
     text-decoration: none;
     list-style: none;
-    scroll-behavior: smooth;
+}
+
+:root{
+    --main-color: #7270ec;
+    --text-color: #FFF;
+    --bg-color: #242430;
+    --prom-color:#008000;
+}
+
+img{
+    width: 100%;
 }
 
 body{
@@ -16,13 +29,35 @@ body{
 .container{
     max-width: 1200px;
     margin: 0 auto;
+    width: 100%;
+}
+
+section{
+    padding: 4rem 0 3rem;
+    color: #FFF;
 }
 
 .header{
     display: flex;
+    height: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    box-shadow: 0 1px 4px hsl(0 4% 15% / 10%);
     align-items: center;
-    height: 100%;
-    margin-top: 50px;
+}
+
+.section-tittle{
+    font-size: 5rem;
+    font-weight: 600;
+    text-align: left;
+    color: #FFF;
+}
+
+.shop{
+    margin-top: 2rem;
+
 }
 
 .swiper-slide{
@@ -58,9 +93,7 @@ body{
 }
 
 .menu{
-    position: fixed;
-    background-color: #242430;
-    opacity: 1;
+    position: absolute;
     top: 0;
     left: 0;
     right: 0;
@@ -70,28 +103,8 @@ body{
     z-index: 1000;
 }
 
-.logo {
-    font-size: 40px;
-    color: #7270ec;
-    text-transform: uppercase;
-    font-weight: 800;
-}
-
-.user{
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+.logo{
     font-size: 25px;
-    color: #7270ec;
-    border-style:solid;
-    border-color: #a9a8e2;
-    border-width: 1px;
-    padding: 10px;
-}
-
-.login {
-    font-size: 25px;
-    border-style: solid;
-    border-width: 3px;
-    border-color: #f4f4f4;
     color: #7270ec;
     text-transform: uppercase;
     font-weight: 800;
@@ -110,21 +123,6 @@ body{
 }
 
 .menu .navbar ul li a:hover{
-    color: #7270ec;
-}
-
-.footer-scroll{
-    align-items: right;
-}
-
-.flecha{
-    width: 40px;
-    margin: auto;
-    margin-left: 1820px;
-    margin-top: 15px;
-}
-
-.footer .link .navbar ul li a:hover{
     color: #7270ec;
 }
 
@@ -147,12 +145,6 @@ body{
 
 .submenu #carrito{
     display: none;
-    right: 0;
-    top: 100%;
-    z-index: 1;
-    background-color: #000000;
-    padding: 20px;
-    min-width: 400px;
 }
 
 .submenu:hover #carrito{
@@ -166,11 +158,22 @@ body{
     min-width: 400px;
 }
 
+.header-txt:hover #btn-1{
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    z-index: 1;
+    background-color: #4E4B5076;
+    padding: 20px;
+    min-width: 400px;
+}
+
 .tabla{
     width: 100%;
 }
 
-th, td{
+th, td, tr{
     color: #FEFFFF;
 }
 
@@ -210,21 +213,39 @@ th, td{
     width: 450px;    
 }
 
+
 .prices{
     margin: 20px 0;
     text-align: left;
 }
 
 .existencia{
-    width: 160px;
+    width: 190px;
     border-style:solid;
     border-color: #7270ec;
     border-width: 1px;
     padding: 10px;
 }
 
+.espacio{
+    padding: 10px;
+    color: #000000;
+}
+
+tr{
+    padding: 20px;
+}
+
+.existenciT{
+    width: 250px;
+    border-style:solid;
+    border-color: #7270ec;
+    border-width: 1px;
+    padding: 20px;
+}
+
 .existenciaDB{
-    font-size: large;
+    font-size: 15px;
 }
 
 .price-1{
@@ -237,6 +258,34 @@ th, td{
 .price-2{
     font-size: 30px;
     color: #7270ec !important;
+}
+
+.shop-content{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, auto));
+    gap: 1.5rem;
+}
+
+.product-box{
+    position: relative;
+    color: var(--text-color);
+}
+
+.product-box:hover{
+    padding: 5px;
+    border: 2px solid var(--main-color);
+    transition: 0.1s;
+}
+
+.product-box-prom{
+    position: relative;
+    color: var(--text-color);
+}
+
+.product-box-prom:hover{
+    padding: 5px;
+    border: 2px solid var(--prom-color);
+    transition: 0.1s;
 }
 
 .btn-1{
@@ -266,7 +315,6 @@ hr{
     font-size: 50px;
     color: #FEFFFF;
     margin-bottom: 35px;
-    margin-top: 35px;
 }
 
 .categories{
@@ -355,12 +403,11 @@ hr{
 
 .footer{
     display: flex;
-    padding: 25px;
-    align-items: center;
+    padding: 30px 0;
 }
 
 .link{
-    width: 100%;
+    width: 20%;
 }
 
 .link h3{
@@ -378,7 +425,6 @@ hr{
 .link p{
     color: #747b8f;
     font-size: 16px;
-    text-align: justify;
 }
 
 @media(max-width:991px){
@@ -449,10 +495,9 @@ hr{
         width: 200px;
     }
 
-    /* .prices{
-        flex-direction: row;
-        flex-wrap: wrap;
-    } */
+    .prices{
+        flex-direction: column;
+    }
 
     .price-1{
         margin: 0;
