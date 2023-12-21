@@ -1,41 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Insertar producto</title>
+    <title>Insertar sucursal</title>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
+
 <body>
-<?php
+    <?php
     $host = "localhost";
     $port = "5432";  // Default PostgreSQL port
-    $dbname = "music_shop";
+    $dbname = "notamala";
     $user = "lansan69";
     $password = "LanSan2004*";
     
     $connection = pg_connect("host=$host port=$port dbname=$dbname user=$user password=$password");
     if($connection){
         $nombre = $_POST['nombre'];
-        $tipo_producto = $_POST['tipo'];
-        $marca = $_POST['marca'];
-        $precio_venta = $_POST['precio'];
-        $descripcion = $_POST['descripcion'];
-        $modelo = $_POST['modelo'];
-        $existencia = $_POST['existencia'];
-        $proveedor = $_POST['proveedor'];
-        $categoria = $_POST['categoria'];
-        
-        $proveedorMAP= [
-            'guitarG' => 1,
-            'ernieB' => 2,
-            'equipB' => 3,
-            'takaG' => 4,
-            ];
-        $db_prov = $proveedorMAP[$proveedor];
+        $rfc = $_POST['rfc'];
+        $rs = $_POST['rs'];
+        $colonia = $_POST['colonia'];
+        $ciudad = $_POST['ciudad'];
+        $cp = $_POST['cp'];
+        $nombre_c = $_POST['nombre_c'];
+        $apellido1 = $_POST['apellido1'];
+        $apellido2 = $_POST['apllido2']; // Fix the typo in the form field name
+        $correo = $_POST['correo'];
 
-        $query = "INSERT INTO producto (nombre, tipo_producto, marca, precio_venta, descripcion, modelo, existencia, proveedor, categoria)
-              VALUES ('$nombre', '$tipo_producto', 'Ernie Ball', '$precio_venta', '$descripcion', '$modelo', '$existencia', ' $db_prov', '$categoria')";
+        $query = "INSERT INTO proveedor (nombre, rfc, razon_social, colonia, ciudad, codigo_postal, nombre_contacto, primer_apellido, segundo_apellido, correo)
+        VALUES ('$nombre', '$rfc', '$rs', '$colonia', '$ciudad', '$cp', '$nombre_c', '$apellido1', '$apellido2', '$correo')";
 
 
         $result = pg_query($connection, $query);
@@ -44,10 +39,10 @@
             echo "<script>
             Swal.fire({
                 icon: 'success',
-                title: 'Producto " . $nombre . " agregado con éxito',
+                title: 'Proveedor " . $nombre . " agregado con éxito',
                 confirmButtonText: 'OK'
             }).then(function () {
-                window.location.href = 'consult_product.php';
+                window.location.href = 'consult_proveedor.php';
             });
           </script>";
         }else{
@@ -56,7 +51,7 @@
                 if (typeof Swal !== 'undefined' && Swal.fire) {
                     Swal.fire({
                         icon: 'error',
-                        title: 'Error al agregar empleado',
+                        title: 'Error al agregar provedor',
                         text: $error_message,
                         confirmButtonText: 'OK'
                     }).then(function () {
@@ -70,4 +65,5 @@
     }
 ?>
 </body>
+
 </html>

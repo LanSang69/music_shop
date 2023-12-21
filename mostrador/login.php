@@ -11,6 +11,11 @@
 <body>
     <div class="form_login">
         <h1>Iniciar sesión</h1>
+
+        <form action="../boss.php" method="get">
+            <button type="submit" formaction="../home.php">Volver</button>
+        </form>
+
         <form method="post">
             <?php 
                 include "login_controller.php";

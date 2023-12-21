@@ -3,68 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Actualizar producto</title>
+    <title>Insertar sucursal</title>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
 <?php
     $host = "localhost";
     $port = "5432";  // Default PostgreSQL port
-    $dbname = "music_shop";
+    $dbname = "notamala";
     $user = "lansan69";
     $password = "LanSan2004*";
     
     $connection = pg_connect("host=$host port=$port dbname=$dbname user=$user password=$password");
-    
-    if ($connection) {
-        $id = $_POST['id']; // Assuming you are getting the ID from a form field
+    if($connection){
         $nombre = $_POST['nombre'];
-        $tipo_producto = $_POST['tipo'];
-        $marca = $_POST['marca'];
-        $precio = $_POST['precio'];
-        $modelo = $_POST['modelo'];
-        $existencia = $_POST['existencia'];
-        $proveedor = $_POST['proveedor'];
-        $categoria = $_POST['categoria'];
-        
-        $proveedorMAP= [
-            'guitarG' => 1,
-            'ernieB' => 2,
-            'equipB' => 3,
-            'takaG' => 4,
-        ];
-        $db_prov = $proveedorMAP[$proveedor];
+        $colonia = $_POST['colonia'];
+        $ciudad = $_POST['ciudad'];
+        $cp = $_POST['cp'];
+        $estado = $_POST['estado'];
+        $estadoMAP= [
+            'activa' => 1,
+            'cerrada' => 2,
+            ];
+        $db_estado = $estadoMAP[$estado];
 
-        $query = "UPDATE producto 
-                  SET nombre = '$nombre', 
-                      tipo_producto = '$tipo_producto', 
-                      marca = 'Ernie Ball', 
-                      precio_venta = '$precio', 
-                      modelo = '$modelo', 
-                      existencia = '$existencia', 
-                      proveedor = '$db_prov', 
-                      categoria = '$categoria' 
-                  WHERE id_producto = '$id'";
+        $query = "INSERT INTO sucursal (nombre, colonia, ciudad, codigo_postal, id_estado)
+              VALUES ('$nombre', '$colonia', '$ciudad', $cp, '$db_estado')";
+
 
         $result = pg_query($connection, $query);
 
-        if ($result) {
+        if($result){
             echo "<script>
             Swal.fire({
                 icon: 'success',
-                title: 'Producto " . $nombre . " actualizado con éxito',
+                title: 'Sucursal " . $nombre . " agregado con éxito',
                 confirmButtonText: 'OK'
             }).then(function () {
-                window.location.href = 'consult_product.php';
+                window.location.href = 'consult_sucursal.php';
             });
           </script>";
-        } else {
+        }else{
             $error_message = json_encode(pg_last_error(), JSON_HEX_QUOT | JSON_HEX_APOS);
             echo "<script>
                 if (typeof Swal !== 'undefined' && Swal.fire) {
                     Swal.fire({
                         icon: 'error',
-                        title: 'Error al actualizar el producto',
+                        title: 'Error al agregar sucursal',
                         text: $error_message,
                         confirmButtonText: 'OK'
                     }).then(function () {

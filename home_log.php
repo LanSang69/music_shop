@@ -263,7 +263,7 @@
                     <li><a href="#">Inicio</a></li>
                     <li><a href="#lista-1">Productos</a></li>
                     <li><a href="login.php">Iniciar sesión</a></li>
-                    <li><a href="src/login_p.html">Soy un empleado</a></li>
+                    <li><a href="mostrador/login.php">Soy un empleado</a></li>
                 </ul>
             </nav>
         </div>

@@ -68,7 +68,7 @@
         <div>
             <a href="productos/consult_product.php" class="button">Productos</a>
             <a href="empleados/consult_employee.php" class="button">Empleados</a>
-            <a href="" class="button">Proveedores</a>
+            <a href="proveedores/consult_proveedor.php" class="button">Proveedores</a>
         </div>
     </div>
 </body>

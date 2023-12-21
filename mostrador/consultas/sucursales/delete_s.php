@@ -1,7 +1,7 @@
 <?php
 $host = "localhost";
 $port = "5432";
-$dbname = "music_shop";
+$dbname = "notamala";
 $user = "lansan69";
 $password = "LanSan2004*";
 
@@ -10,7 +10,7 @@ $connection = pg_connect("host=$host port=$port dbname=$dbname user=$user passwo
 if ($connection) {
     $id = $_GET['id'];
 
-    $query = "UPDATE producto SET estado_venta = 'descontinuado' WHERE id_producto = $id";
+    $query = "UPDATE sucursal SET id_estado = 2 WHERE id_sucursal = $id";
     $result = pg_query($connection, $query);
 
     if ($result) {

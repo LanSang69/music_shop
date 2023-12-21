@@ -1,36 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Empleados</title>
-    <link rel="stylesheet" href="../../css/loginStyle.css">
+    <title>Sucursales</title>
+    <link rel="stylesheet" type="text/css" href="../../css/styles_list.css">
 </head>
-
 <body>
-    <div class="busqueda">
-        <div class="buscar">
-            <form action="buscar_e.php" method="post">
-                <input type="text" name="buscar" id="">
-                <input type="submit" value="buscar" id="">
-            </form>
-        </div>
-        <div class="buscar">
-            <form action="consult_employee.php" method="post">
-                <input type="submit" value="Restart" id="">
-            </form>
-        </div>
-        <div class="buscar">
-            <a href="add_employee.php">Nuevo</a>
-        </div>
+
+    <h1>Empleados</h1>
+
+    <div id="search-box">
+    <form action="buscar_e.php" method="post">
+        <input type="text" id="search-input" placeholder="Ingrese texto de búsqueda">
+        <button id="search-button">Buscar</button>
+    </form>
+
+    <form action="consult_employee.php" method="post">
+        <button id="restart-button" value="Restart">Eliminar búsqueda</button>
+    </form>
+
+    <form action="consult_employee.php" method="get">
+        <button type="submit" formaction="../gerente.php">Volver</button>
+    </form>
+
     </div>
-
-
-    <div>
-        <table border="1">
+    
+    <div class="table-content">
+        <table>
+            <thead>
             <tr>
-                <td>id</td>
                 <td>Nombre</td>
                 <td>Primer apellido</td>
                 <td>Segundo apellido</td>
@@ -39,14 +38,15 @@
                 <td>Sucursal</td>
                 <td>Opciones</td>
             </tr>
+            </thead>
             <?php
-            $connection = pg_connect("host=localhost port=5432 dbname=music_shop user=lansan69 password=LanSan2004*");
+            $connection = pg_connect("host=localhost port=5432 dbname=notamala user=lansan69 password=LanSan2004*");
 
             if ($connection) {
                 $busqueda = $_POST['buscar'];
-                $result = pg_query($connection, "SELECT empleado.id AS id, empleado.nombre AS nombre, p_apellido, s_apellido, rfc, 
+                $result = pg_query($connection, "SELECT empleado.id_empleado as id, empleado.nombre AS nombre, p_apellido, s_apellido, rfc, 
                 puesto.nombre AS puesto_nombre, sucursal.nombre AS nombre_sucursal FROM empleado 
-                JOIN puesto ON empleado.puesto = puesto.id JOIN sucursal ON sucursal.id = empleado.sucursal 
+                JOIN puesto ON empleado.id_puesto = puesto.id_puesto JOIN sucursal ON sucursal.id_sucursal = empleado.id_sucursal
                 WHERE 
                 empleado.nombre ILIKE '%$busqueda%' OR
                 p_apellido ILIKE '%$busqueda%' OR
@@ -58,43 +58,30 @@
                 
                 while ($row = pg_fetch_assoc($result)) {
                     ?>
+            <tbody>
             <tr>
-                <td><?php echo $row['id'] ?></td>
                 <td><?php echo $row['nombre'] ?></td>
                 <td><?php echo $row['p_apellido'] ?></td>
                 <td><?php echo $row['s_apellido'] ?></td>
                 <td><?php echo $row['rfc'] ?></td>
                 <td><?php echo $row['puesto_nombre'] ?></td>
                 <td><?php echo $row['nombre_sucursal'] ?></td>
-                <td>
-                    <a href="edit_emp.php?
-                    id=<?php echo $row['id']?> &
-                    nombre=<?php echo $row['nombre']?> &
-                    p_ap=<?php echo $row['p_apellido']?> &
-                    s_ap=<?php echo $row['s_apellido']?> &
-                    rfc=<?php echo $row['rfc']?> &
-                    puesto=<?php echo $row['puesto_nombre']?> &
-                    sucursal=<?php echo $row['nombre_sucursal']?>
-                    ">Editar</a>
-                    <a href="delete_emp.php? id=<?php echo $row['id']?>">Eliminar</a>
-                    <a href="show_schedule.php? 
-                    id=<?php echo $row['id']?> &
-                    nombre=<?php echo $row['nombre']?> &
-                    p_ap=<?php echo $row['p_apellido']?> &
-                    s_ap=<?php echo $row['s_apellido']?> &
-                    rfc=<?php echo $row['rfc']?> &
-                    puesto=<?php echo $row['puesto_nombre']?> &
-                    sucursal=<?php echo $row['nombre_sucursal']?>
-                    ">Horarios</a>
-                </td>
+                <td><input type="radio" name="selectedItem" value="<?php echo $row['id']; ?>"></td>
             </tr>
             <?php 
                 }
             }
                 ?>
+            </tbody>
         </table>
     </div>
 
+    <div class="action-buttons">
+    <form action="add_employee.php" method="post">
+        <button class="add-button">Agregar</button>
+    </form>
+        <button class="modify-button">Modificar</button>
+        <button class="delete-button">Despedir</button>
+    </div>
 </body>
-
 </html>

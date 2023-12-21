@@ -4,23 +4,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modificar empleado</title>
-    <link rel="stylesheet" href="../../css/loginStyle.css">
+    <title>Agregar empleado</title>
+    <link rel="stylesheet" type="text/css" href="../../css/styles_list.css">
 </head>
 
 <body>
-    <?php
+    
+<?php
         $id = $_GET['id'];
-        $nombre = $_GET['nombre'];
+        $nombre = $_GET['name'];
         $p_apellido = $_GET['p_ap'];
         $s_apellido = $_GET['s_ap'];
         $rfc = $_GET['rfc'];
         $puesto = $_GET['puesto'];
         $sucursal = $_GET['sucursal'];
     ?>
+
+<div class="table-content">
     <div>
-        <form action="sp_edit_emp.php" method="post">
-            <table border="1">
+    <form action="modify_emp.php" method="post">
+        <table border="1" class="table">
                 <tr>
                     <td>Ingresa datos: </td>
                     <td><input type="text" value="<?=$id?>" style="display:none" name="id" id=""></td>
@@ -45,10 +48,11 @@
                     <td>Puesto</td>
                     <td>
                         <select name="puesto" required>
-                            <option value="gerente" <?=($puesto == 'gerente ') ? 'selected' : ''?>>Gerente</option>
-                            <option value="mostrador" <?=($puesto == 'mostrador ') ? 'selected' : ''?>>Mostrador</option>
-                            <option value="supervisor" <?=($puesto == 'supervisor ') ? 'selected' : ''?>>Supervisor</option>
-                            <option value="atencion" <?=($puesto == 'atencion ') ? 'selected' : ''?>>Atención a clientes</option>
+                            <option value="gerente" <?=($puesto == 'Gerente') ? 'selected' : ''?>>Gerente</option>
+                            <option value="ventas" <?=($puesto == 'Ventas') ? 'selected' : ''?>>Ventas</option>
+                            <option value="mostrador" <?=($puesto == 'Mostrador') ? 'selected' : ''?>>Mostrador</option>
+                            <option value="supervisor" <?=($puesto == 'Supervisor') ? 'selected' : ''?>>Supervisor</option>
+                            <option value="atencion" <?=($puesto == 'Atención a clientes') ? 'selected' : ''?>>Atención a clientes</option>
                         </select>
                     </td>
                 </tr>
@@ -56,20 +60,21 @@
                     <td>Sucursal</td>
                     <td>
                         <select name="sucursal" required>
-                            <option value="chalco" <?=($sucursal == 'musica2') ? 'selected' : ''?>>Chalco</option>
-                            <option value="roma" <?=($sucursal == 'musica3') ? 'selected' : ''?>>Roma</option>
+                            <option value="chalco" <?=($sucursal == 'La nota mala Chalco') ? 'selected' : ''?>>Chalco</option>
+                            <option value="roma" <?=($sucursal == 'La nota mala Roma') ? 'selected' : ''?>>Roma</option>
                         </select>
                     </td>
                 </tr>
-                <tr>
-                    <td><input type="submit" value="Actualizar"></td>
-                    <td>
-                        <a href="consult_employee.php">Cancelar</a>
-                    </td>
-                </tr>
             </table>
-        </form>
+        <div class="submit-button">
+            <button type="submit">Guardar</button>
+        </div>
+    </form>
+    <form action="consult_employee.php" method="get" class="return-form">
+        <button type="submit" formaction="consult_employee.php">Volver</button>
+    </form>
     </div>
+</div>
 </body>
 
 </html>
