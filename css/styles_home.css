@@ -166,6 +166,15 @@ body{
     min-width: 400px;
 }
 
+table tbody tr td{
+    padding: 10px;
+}
+
+#lista-carrito tbody td {
+    text-align: center;
+    vertical-align: middle;
+}
+
 .tabla{
     width: 100%;
 }

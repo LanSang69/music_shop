@@ -20,48 +20,45 @@ session_start();
 
         <div class="categories">
 
-                    <?php
+            <?php
+            $_SESSION['sum'] = 0;
 
-                        if (isset($_SESSION['cart_data'])) {
-                            foreach ($_SESSION['cart_data'] as $producto) {
-                                echo ' <div class="categorie">';
-                                echo '<div class="categorie-1" id="' . $producto['id'] . '">';
-                                echo '<h3>' . $producto['titulo'] . '</h3>';
+            if (isset($_SESSION['cart_data'])) {
 
-                                echo '<img src="' .$producto['imagen'] . '" class="categorie-img" alt="">';
+                foreach ($_SESSION['cart_data'] as $producto) {
+                    $_SESSION['sum'] += $producto['precio'] * $producto['cantidad'];
 
-                                echo '<p id="precioProducto"> Precio: <span class="cantidad">' . $producto['precio'] . '</span></p>';
-                                echo '<div class="alter_cantidad">';
-                                echo '<img src="../../images/minus.png" class="icons_buy" id="menos">';
-                                echo '<p class="existencia"> Cantidad: <span class="cantidad" id="cantidadProducto">  1 </span></p>';
-                                echo '<img src="../../images/add.png" class="icons_buy" id="mas">';
-                                echo '</div>';
-                                echo '</div>';
-                                echo '</div>';
-                                
-                            }
-                        } else {
-                        echo 'El carrito está vacío.';
-                        }
-                    ?>
+                    echo ' <div class="categorie">';
+                    echo '<div class="categorie-1" id="' . $producto['id'] . '">';
+                    echo '<h3>' . $producto['titulo'] . '</h3>';
 
-                    <div class="categorie">
-                        <a href="#" class="agregar-carrito btn-1" id="precioTotal">Calcular total</a>
-                    </div>
+                    echo '<img src="' . $producto['imagen'] . '" class="categorie-img" alt="">';
 
-                    <div class="categorie">
-                        <p class="existencia total"> Total: <span class="totalPrice" id="total"> 0 </span></p>
-                    </div>
+                    echo '<p id="precioProducto"> Precio: $<span class="precio" data-id="' . $producto['id'] . '">' . $producto['precio'] . '</span></p>';
+                    echo '<div class="alter_cantidad">';
+                    echo '<img src="../../images/minus.png" class="icons_buy menos" data-id="' . $producto['id'] . '">';
+                    echo '<p class="existencia"> Cantidad: <span class="cantidad" data-id="' . $producto['id'] . '">' . $producto['cantidad'] . '</span></p>';
+                    echo '<img src="../../images/add.png" class="icons_buy mas" data-id="' . $producto['id'] . '">';
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+                }
+            } else {
+                echo 'El carrito está vacío.';
+            }
+            ?>
 
-                    <div class="categorie">
-                        <a href="#" class="agregar-carrito btn-3" data-id="1">Proceder con la compra</a>
-                    </div>
+            <div class="categorie">
+                <p class="existencia p_total"> Total:<br>$<span class="totalPrice" id="total"> <?php echo number_format($_SESSION['sum'], 2, '.', ',') ?> </span></p>
+            </div>
 
+            <div class="categorie">
+                <a href="#" class="agregar-carrito btn-3" data-id="1">Proceder con la compra</a>
+            </div>
 
         </div>
     </section>
+
     <script src="../../js/cantidad.js"></script>
-    <script src="../../js/total.js"></script>
 </body>
 </html>
-

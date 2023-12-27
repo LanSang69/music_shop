@@ -13,18 +13,22 @@ if ($connection) {
     categoria, marca, modelo, descripcion FROM producto JOIN proveedor ON proveedor=proveedor.id ORDER BY id_producto");
 
 
-    while ($row = pg_fetch_assoc($result)) {
+
+while ($row = pg_fetch_assoc($result)) {
+
+        $formattedPrice = number_format($row["precio_venta"], 2, '.', ',');
+        
         if ($row["existencia"] >= 15) {
             $existenciaC = '#00FF00';
         } else {
             $existenciaC = '#FF0000';
         }
 
-        echo '<div class="categorie">';
+        echo '<div class="categorie id="' . $row["id_producto"] . '>';
         echo '<div class="categorie-1">';
-        echo '<h3 class="product-title" id="' . $row["id_producto"] . '">' . $row["nombre"] . '</h3>';
+        echo '<h3 class="product-title">' . $row["nombre"] . '</h3>';
         echo '<div class="prices">';
-        echo '<p class="precio">$' . $row["precio_venta"] . '</p>';
+        echo '<p>$<span class="precio">' . $formattedPrice . '</span></p>';
         echo '<br>';
         echo '<p class="existencia">Disponibles: <span class="existenciaDB" style="color:' . $existenciaC . '">' . $row["existencia"] . '</span></p>';
         echo '</div>';
