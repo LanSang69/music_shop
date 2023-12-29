@@ -45,6 +45,7 @@ const vaciarCarritoBtn = document.getElementById('vaciar-carrito');
 // Load existing cart items from localStorage
 cartItems.forEach((item) => {
     insertarCarrito(item);
+    insertarSession(item);
 });
 
 cargarEventListeners();
@@ -56,6 +57,26 @@ function cargarEventListeners() {
     carrito.addEventListener('click', eliminarElemento);
 
     vaciarCarritoBtn.addEventListener('click', vaciarCarrito);
+}
+
+//Function to save in the session variable the data
+function insertarSession(infoElemento) {
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', 'php/clients/procesar_compra.php', true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+    xhr.onload = function () {
+        if (xhr.status === 200) {
+            // Manejar la respuesta del servidor si es necesario
+            console.log(xhr.responseText);
+        }
+    };
+
+    // Convertir el objeto JavaScript en una cadena JSON
+    const datos = JSON.stringify(infoElemento);
+
+    // Enviar los datos al servidor
+    xhr.send('datos=' + datos);
 }
 
 // Function to parse a formatted price and convert it to a numeric value
