@@ -39,7 +39,7 @@
                 <ul>
                     <li class="submenu">
                         <img src="images/car.svg" id="img-carrito" alt="">
-                        <span id="cart-count" style="color: #FFFF;">Carrito: <span id="cart-count-value">0</span></span>
+                        <span id="cart-count" style="color: #FFFF;"><span id="cart-count-value">0</span></span>
 
                         <div id="carrito">
                             <table id="lista-carrito">

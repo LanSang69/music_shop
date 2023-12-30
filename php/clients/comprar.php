@@ -34,7 +34,7 @@ session_start();
 
                     echo '<img src="' . $producto['imagen'] . '" class="categorie-img" alt="">';
 
-                    echo '<p id="precioProducto"> Precio: $<span class="precio" data-id="' . $producto['id'] . '">' . $producto['precio'] . '</span></p>';
+                    echo '<p id="precioProducto"> Precio: $<span class="precio" data-id="' . $producto['id'] . '">' . number_format($producto['precio'], 2, '.', ',') . '</span></p>';
                     echo '<div class="alter_cantidad">';
                     echo '<img src="../../images/minus.png" class="icons_buy menos" data-id="' . $producto['id'] . '">';
                     echo '<p class="existencia"> Cantidad: <span class="cantidad" data-id="' . $producto['id'] . '">' . $producto['cantidad'] . '</span></p>';
@@ -53,12 +53,13 @@ session_start();
             </div>
 
             <div class="categorie">
-                <a href="#" class="agregar-carrito btn-3" data-id="1">Proceder con la compra</a>
+                <a href="#" class="agregar-carrito btn-3" id="terminar_compra">Proceder con la compra</a>
             </div>
 
         </div>
     </section>
 
     <script src="../../js/cantidad.js"></script>
+    <script src="../../js/comprar.js"></script>
 </body>
 </html>

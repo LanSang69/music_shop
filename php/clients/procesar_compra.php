@@ -6,19 +6,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['datos'])) {
     $datos = json_decode($_POST['datos'], true);
 
     if (isset($_SESSION['cart_data'])) {
-        // Si los datos del carrito ya existen en la sesión, agrega los nuevos datos del producto
-        $_SESSION['cart_data'][] = $datos;
+        // Check if the product with the same ID already exists in the cart
+        $existingProductIndex = array_search($datos['id'], array_column($_SESSION['cart_data'], 'id'));
+
+        if ($existingProductIndex !== false) {
+            // Product already exists, you can update quantity or do nothing
+            echo "El producto ya existe en el carrito";
+        } else {
+            // Product does not exist, add it to the cart
+            $_SESSION['cart_data'][] = $datos;
+            echo "Agregado al carrito correctamente";
+        }
     } else {
-        // Si los datos del carrito no existen, crea un nuevo arreglo con los datos del producto
+        // If the cart data does not exist, create a new array with the product data
         $_SESSION['cart_data'] = array($datos);
+        echo "Agregado al carrito correctamente";
     }
 
-    // Realiza las acciones necesarias con los datos, como guardarlos en una base de datos o realizar cálculos.
-
-    // Envía una respuesta al cliente
-    echo "Agregado al carrito correctamente";
+    // Perform any necessary actions with the data, such as saving it to a database or performing calculations.
 } else {
-    // Manejar errores o solicitudes no válidas aquí
+    // Handle errors or invalid requests here
 }
 
 ?>

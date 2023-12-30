@@ -1,37 +1,37 @@
-var swiper = new Swiper(".mySwiper-1", {
-    slidesPerView: 1,
-    spaceBetween: 30,
-    loop: true,
-    pagination:{
-        el: ".swiper-pagination",
-        clickable: true,
-    },
-    navigation:{
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev"
-    }
-});
+// var swiper = new Swiper(".mySwiper-1", {
+//     slidesPerView: 1,
+//     spaceBetween: 30,
+//     loop: true,
+//     pagination:{
+//         el: ".swiper-pagination",
+//         clickable: true,
+//     },
+//     navigation:{
+//         nextEl: ".swiper-button-next",
+//         prevEl: ".swiper-button-prev"
+//     }
+// });
 
-var swiper = new Swiper(".mySwiper-2", {
-    slidesPerView: 3,
-    spaceBetween: 30,
-    loop: true,
-    navigation:{
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev"
-    },
-    breakpoints:{
-        0:{
-            slidesPerView: 1
-        },
-        520:{
-            slidesPerView: 2
-        },
-        950:{
-            slidesPerView: 3
-        }
-    }
-});
+// var swiper = new Swiper(".mySwiper-2", {
+//     slidesPerView: 3,
+//     spaceBetween: 30,
+//     loop: true,
+//     navigation:{
+//         nextEl: ".swiper-button-next",
+//         prevEl: ".swiper-button-prev"
+//     },
+//     breakpoints:{
+//         0:{
+//             slidesPerView: 1
+//         },
+//         520:{
+//             slidesPerView: 2
+//         },
+//         950:{
+//             slidesPerView: 3
+//         }
+//     }
+// });
 
 // Carrito
 let cartItems = JSON.parse(localStorage.getItem('cartData')) || [];
@@ -45,7 +45,6 @@ const vaciarCarritoBtn = document.getElementById('vaciar-carrito');
 // Load existing cart items from localStorage
 cartItems.forEach((item) => {
     insertarCarrito(item);
-    insertarSession(item);
 });
 
 cargarEventListeners();
@@ -57,26 +56,6 @@ function cargarEventListeners() {
     carrito.addEventListener('click', eliminarElemento);
 
     vaciarCarritoBtn.addEventListener('click', vaciarCarrito);
-}
-
-//Function to save in the session variable the data
-function insertarSession(infoElemento) {
-    const xhr = new XMLHttpRequest();
-    xhr.open('POST', 'php/clients/procesar_compra.php', true);
-    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-
-    xhr.onload = function () {
-        if (xhr.status === 200) {
-            // Manejar la respuesta del servidor si es necesario
-            console.log(xhr.responseText);
-        }
-    };
-
-    // Convertir el objeto JavaScript en una cadena JSON
-    const datos = JSON.stringify(infoElemento);
-
-    // Enviar los datos al servidor
-    xhr.send('datos=' + datos);
 }
 
 // Function to parse a formatted price and convert it to a numeric value
@@ -114,7 +93,6 @@ function enviarDatosAlServidor(infoElemento) {
 
     xhr.onload = function () {
         if (xhr.status === 200) {
-            // Manejar la respuesta del servidor si es necesario
             console.log(xhr.responseText);
         }
     };
@@ -138,13 +116,11 @@ function insertarCarrito(elemento) {
             let currentQuantity = parseInt(quantityElement.textContent);
             currentQuantity++;
             elemento.cantidad = currentQuantity;
-            console.log(elemento);
             quantityElement.textContent = currentQuantity;
 
             // Update the quantity in the cartItems array
             const existingCartItemIndex = cartItems.findIndex((item) => item.id === elemento.id);
             if (existingCartItemIndex !== -1) {
-
                 cartItems[existingCartItemIndex].cantidad = currentQuantity;
                 localStorage.setItem('cartData', JSON.stringify(cartItems)); // Save the updated array
                 eliminarElementoServidor(elemento.id);
@@ -184,12 +160,13 @@ function insertarCarrito(elemento) {
         if (!isItemInCart) {
             cartItems.push(elemento);
             localStorage.setItem('cartData', JSON.stringify(cartItems));
-            enviarDatosAlServidor(elemento);
         }
+        
+        enviarDatosAlServidor(elemento);
+        
     }
 
     updateCartCount(); // Update the cart count
-    console.log(localStorage.getItem('cartData'));
 }
 
 

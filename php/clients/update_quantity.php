@@ -1,9 +1,9 @@
 <?php
 session_start();
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id']) && isset($_POST['quantity'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id']) && isset($_POST['cantidad'])) {
     $productId = $_POST['id'];
-    $newQuantity = $_POST['quantity'];
+    $newQuantity = $_POST['cantidad'];
 
     if (isset($_SESSION['cart_data'])) {
         // Check if the product is already in the cart
@@ -12,6 +12,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id']) && isset($_POST
         if ($productIndex !== false) {
             // If the product is found, update the quantity
             $_SESSION['cart_data'][$productIndex]['cantidad'] = $newQuantity;
+
+            // Recalculate the sum in the session
+            $_SESSION['sum'] = 0;
+            foreach ($_SESSION['cart_data'] as $product) {
+                $_SESSION['sum'] += $product['precio'] * $product['cantidad'];
+            }
+
             echo "Quantity updated successfully";
         } else {
             // If the product is not found, you may choose to handle this case
