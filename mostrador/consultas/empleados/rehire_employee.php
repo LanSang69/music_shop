@@ -8,20 +8,23 @@ $password = "LanSan2004*";
 $connection = pg_connect("host=$host port=$port dbname=$dbname user=$user password=$password");
 
 if ($connection) {
-    $id = $_GET['id'];
+    $id_empleado = $_GET['id'];
     $nombre = $_GET['name'];
     $rfc = $_GET['rfc'];
 
     // Update query
-    $query = "UPDATE empleado SET id_estado = 2 WHERE id_empleado = $id";
+    $query = "UPDATE empleado SET id_estado = 1 WHERE id_empleado = $id_empleado";
     $result = pg_query($connection, $query);
 
-    // Delete query
-    $query2 = "DELETE FROM horario_empleado WHERE id_empleado = $id";
-    $result2 = pg_query($connection, $query2);
+    // Insert query
+    $schedule_query = "INSERT INTO horario_empleado (id_empleado, id_turno, id_dia)
+    VALUES ('$id_empleado', 3, 1), ('$id_empleado', 3, 2), ('$id_empleado', 3, 3),
+    ('$id_empleado', 3, 4), ('$id_empleado', 3, 5), ('$id_empleado', 3, 6)";
+
+    $schedule_result = pg_query($connection, $schedule_query);
 
     // Check both results
-    if ($result && $result2) {
+    if ($result && $schedule_result) {
         // Both queries were successful
         echo json_encode(['success' => true]);
     } else {
@@ -31,4 +34,3 @@ if ($connection) {
     }
 }
 ?>
-

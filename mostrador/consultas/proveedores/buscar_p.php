@@ -4,14 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Empleados</title>
+    <title>Proveedores</title>
     <link rel="stylesheet" type="text/css" href="../../css/styles_list.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
 
-    <h1>Productos</h1>
+    <h1>Proveedores</h1>
 
     <div id="search-box">
         <form action="buscar_p.php" method="post">
@@ -19,12 +19,12 @@
             <button id="search-button">Buscar</button>
         </form>
 
-        <form action="consult_product.php" method="post">
+        <form action="consult_proveedor.php" method="post">
             <button id="restart-button" name="Restart">Eliminar búsqueda</button>
         </form>
 
-        <form action="consult_employee.php" method="get">
-            <button type="submit" formaction="../gerente.php">Volver</button>
+        <form action="return.php" method="get">
+            <button type="submit">Volver</button>
         </form>
 
     </div>
@@ -33,45 +33,55 @@
         <table>
             <tr>
                 <td>Nombre</td>
-                <td>Tipo</td>
-                <td>Existencia</td>
-                <td>Precio</td>
-                <td>Marca</td>
-                <td>Opciones</td>
+                <td>RFC</td>
+                <td>Razón social</td>
+                <td>Código postal</td>
+                <td>Colonia</td>
+                <td>Ciudad</td>
+                <td>Nombre del contacto</td>
+                <td>Primer apellido</td>
+                <td>Segundo apellido</td>
+                <td>Correo</td>
+                <td>Check</td>
             </tr>
             <?php
-            $connection = pg_connect("host=localhost port=5432 dbname=music_shop user=lansan69 password=LanSan2004*");
+$connection = pg_connect("host=localhost port=5432 dbname=notamala user=lansan69 password=LanSan2004*");
 
-            if ($connection) {
-                // Retrieve the value from the form submission
-                $busqueda = isset($_POST['buscar']) ? $_POST['buscar'] : '';
+if ($connection) {
+    $busqueda = $_POST['buscar'];
+    $result = pg_query($connection, "SELECT * FROM proveedor WHERE nombre ILIKE '%$busqueda%' 
+    OR nombre_contacto ILIKE '%$busqueda%' OR primer_apellido ILIKE '%$busqueda%' 
+    OR segundo_apellido ILIKE '%$busqueda%' ORDER BY id_proveedor");
 
-                $result = pg_query($connection, "SELECT * FROM producto WHERE nombre ILIKE '%$busqueda%' 
-                OR tipo_producto ILIKE '%$busqueda%' ORDER BY id_producto");
-
-                while ($row = pg_fetch_assoc($result)) {
-            ?>
-                    <tr>
-                        <td><?php echo $row['nombre'] ?></td>
-                        <td><?php echo $row['tipo_producto'] ?></td>
-                        <td><?php echo $row['existencia'] ?></td>
-                        <td><?php echo $row['precio_venta'] ?></td>
-                        <td><?php echo $row['marca'] ?></td>
-                        <td><input type="radio" name="selectedItem" value="<?php echo $row['id_producto']; ?>"></td>
-                    </tr>
+    while ($row = pg_fetch_assoc($result)) {
+        ?>
+            <tr>
+                <td><?php echo $row['nombre'] ?></td>
+                <td><?php echo $row['rfc'] ?></td>
+                <td><?php echo $row['razon_social'] ?></td>
+                <td><?php echo $row['colonia'] ?></td>
+                <td><?php echo $row['ciudad'] ?></td>
+                <td><?php echo $row['codigo_postal'] ?></td>
+                <td><?php echo $row['nombre_contacto'] ?></td>
+                <td><?php echo $row['primer_apellido'] ?></td>
+                <td><?php echo $row['segundo_apellido'] ?></td>
+                <td><?php echo $row['correo'] ?></td>
+                <td><input type="radio" name="selectedItem" value="<?php echo $row['id_proveedor']; ?>"></td>
+            </tr>
             <?php
-                }
-            }
-            ?>
+    }
+}
+?>
+
         </table>
     </div>
 
     <div class="action-buttons">
-        <form action="add_product.php" method="post">
+        <form action="add_proveedor.php" method="post">
             <button type="submit" class="add-button">Agregar</button>
         </form>
-        <button class="modify-button" onclick="modifyEmployee()">Modificar</button>
-        <button class="delete-button" onclick="deleteEmployee()">Descontinuar</button>
+        <button class="modify-button" onclick="modifyProveedor()">Modificar</button>
+        <button class="delete-button" onclick="deleteProveedor()">Eliminar</button>
     </div>
 
     <!-- Script for handling the checked options -->

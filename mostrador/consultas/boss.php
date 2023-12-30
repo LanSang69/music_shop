@@ -55,7 +55,7 @@
 
 <body>
     <div class="button_logout-container">
-        <a class="button_logout" href="../login.php">Log out</a>
+        <a class="button_logout" href="logout.php">Log out</a>
     </div>
     <div class="button-container">
         <div>

@@ -23,8 +23,8 @@
             <button id="restart-button" name="Restart">Eliminar búsqueda</button>
         </form>
 
-        <form action="consult_employee.php" method="get">
-            <button type="submit" formaction="../gerente.php">Volver</button>
+        <form action="return.php" method="get">
+            <button type="submit">Volver</button>
         </form>
 
     </div>

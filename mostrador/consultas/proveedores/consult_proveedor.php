@@ -14,17 +14,17 @@
     <h1>Proveedores</h1>
 
     <div id="search-box">
-        <form action="buscar_s.php" method="post">
+        <form action="buscar_p.php" method="post">
             <input type="text" id="search-input" placeholder="Ingrese texto de búsqueda" name="buscar">
             <button id="search-button">Buscar</button>
         </form>
 
-        <form action="consult_sucursal.php" method="post">
+        <form action="consult_proveedor.php" method="post">
             <button id="restart-button" name="Restart">Eliminar búsqueda</button>
         </form>
 
-        <form action="../boss.php" method="get">
-            <button type="submit" formaction="../boss.php">Volver</button>
+        <form action="return.php" method="get">
+            <button type="submit">Volver</button>
         </form>
 
     </div>
@@ -49,7 +49,7 @@ $connection = pg_connect("host=localhost port=5432 dbname=notamala user=lansan69
 
 if ($connection) {
 
-    $result = pg_query($connection, "SELECT * FROM proveedor WHERE estado_proveedor = 'Activo'ORDER BY id_proveedor");
+    $result = pg_query($connection, "SELECT * FROM proveedor WHERE estado_proveedor = 'Activo' ORDER BY id_proveedor");
 
     while ($row = pg_fetch_assoc($result)) {
         ?>

@@ -9,7 +9,7 @@
 </head>
 <body>
 
-    <h1>Empleados Activos</h1>
+    <h1>Empleados Inactivos</h1>
 
     <div id="search-box">
     <form action="buscar_e.php" method="post">
@@ -55,7 +55,7 @@
                 rfc ILIKE '%$busqueda%' OR
                 puesto.nombre ILIKE '%$busqueda%' OR
                 sucursal.nombre ILIKE '%$busqueda%') AND
-                empleado.id_estado = 1
+                empleado.id_estado = 2
                 ORDER BY id");
 
                 
@@ -81,10 +81,11 @@
 
     <div class="action-buttons">
         <button class="modify-button" onclick="modifyEmployee()">Modificar</button>
-        <button class="delete-button" onclick="deleteEmployee()">Despedir</button>
+        <button class="delete-button" onclick="hireEmployee()">Recontratar</button>
         <button class="chedule-button" onclick="assignSchedule()">Asignar horario</button>
     </div>
 
+    <!-- Script for handling the checked options -->
     <script src="script.js"></script>
 </body>
 </html>

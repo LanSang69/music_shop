@@ -27,6 +27,7 @@ if ($connection) {
             $_SESSION["id"] = $datos["id_empleado"];
             $_SESSION["nombre"] = $datos["nombre"];
             $_SESSION["correo"] = $datos["correo"];
+            $_SESSION["puesto"] = $datos["id_puesto"];
 
             $permisos = pg_query($connection, "SELECT id_puesto FROM empleado WHERE id_empleado = '$id_emp'");
 

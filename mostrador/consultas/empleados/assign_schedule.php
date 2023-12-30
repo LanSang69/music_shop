@@ -48,8 +48,8 @@
                             <td><?= $dia ?></td>
                             <td>
                                 <select name="<?= strtolower($dia) ?>" required>
-                                    <option value="matutino" <?= ($turnos[$dia] == 1) ? 'selected' : '' ?>>Matutino</option>
-                                    <option value="vespertino" <?= ($turnos[$dia] == 2) ? 'selected' : '' ?>>Vespertino</option>
+                                    <option value="matutino" <?= ($turnos[$dia] == 1) ? 'selected' : '' ?>>Matutino (8:00 - 14:00)</option>
+                                    <option value="vespertino" <?= ($turnos[$dia] == 2) ? 'selected' : '' ?>>Vespertino (14:00 - 20:00)</option>
                                     <option value="no-laborable" <?= ($turnos[$dia] == 3) ? 'selected' : '' ?>>No laborable</option>
                                 </select>
                             </td>

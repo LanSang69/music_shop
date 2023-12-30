@@ -60,9 +60,18 @@
             <button type="submit">Guardar</button>
         </div>
     </form>
-    <form action="consult_employee.php" method="get" class="return-form">
-        <button type="submit" formaction="consult_employee.php">Volver</button>
+    <form class="return-form" onsubmit="goBack()">
+        <button type="submit" id="volver">Volver</button>
     </form>
+
+    <script>
+        // Agregar un evento click al enlace "Volver"
+        document.getElementById('volver').addEventListener('click', function (event) {
+            event.preventDefault(); // Evitar la acción predeterminada del enlace
+            window.history.back(); // Retroceder a la página anterior
+        });
+    </script>
+    
     </div>
 </div>
 </body>

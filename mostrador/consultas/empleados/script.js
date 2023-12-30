@@ -94,6 +94,50 @@ function deleteEmployee() {
     }
 }
 
+function hireEmployee() {
+    var selectedEmployee = getSelectedEmployee();
+    if (selectedEmployee) {
+        var id = selectedEmployee.id;
+        var name = selectedEmployee.name;
+        var rfc = selectedEmployee.rfc;
+
+        Swal.fire({
+            icon: 'warning',
+            title: '¿Estás seguro?',
+            text: 'Recontratarás al empleado: ' + name + ' con RFC: ' + rfc,
+            showCancelButton: true,
+            confirmButtonText: 'Sí, recontratar',
+            cancelButtonText: 'Cancelar'
+        }).then(function (result) {
+            if (result.isConfirmed) {
+                // User clicked 'Sí, despedir', proceed with deletion
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+                        var response = JSON.parse(xhr.responseText);
+                        if (response.success) {
+                            // Display success message
+                            showAlert('success', 'Éxito', 'Empleado ' + name + ' de RFC: ' + rfc + ' recontratado', 'OK', function () {
+                                // Reload the page after deletion
+                                location.reload();
+                            });
+                        } else {
+                            // Display error message
+                            showAlert('error', 'Error', 'Error al recontratar empleado: ' + response.message, 'OK');
+                        }
+                    }
+                };
+                xhr.open('GET', 'rehire_employee.php?id=' + id + '&name=' + encodeURIComponent(name) + '&rfc=' + encodeURIComponent(rfc), true);
+                xhr.send();
+            } else {
+                // User clicked 'Cancelar', do nothing
+            }
+        });
+    } else {
+        showAlert('warning', 'Error', 'Por favor, selecciona un empleado.', 'OK');
+    }
+}
+
 
 function assignSchedule() {
     var selectedEmployee = getSelectedEmployee();
