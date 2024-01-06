@@ -130,6 +130,15 @@
                             </select>
                         </td>
                     </tr>
+                    <tr>
+                    <td>Sucursal</td>
+                    <td>
+                        <select name="sucursal" required>
+                            <option value="chalco">Chalco</option>
+                            <option value="roma">Roma</option>
+                        </select>
+                    </td>
+                </tr>
                 </table>
                 <div class="submit-button">
                     <button type="submit">Guardar</button>

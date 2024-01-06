@@ -32,10 +32,16 @@
             'equipB' => 3,
             'takaG' => 4,
             ];
+        $sucursal = $_POST['sucursal'];
+        $sucursalMAP= [
+        'chalco' => 1,
+        'roma' => 2,
+        ];
+        $db_sucursal = $sucursalMAP[$sucursal];
         $db_prov = $proveedorMAP[$proveedor];
 
-        $query = "INSERT INTO producto (nombre, tipo_producto, marca, precio_venta, descripcion, modelo, existencia, proveedor, categoria)
-              VALUES ('$nombre', '$tipo_producto', 'Ernie Ball', '$precio_venta', '$descripcion', '$modelo', '$existencia', ' $db_prov', '$categoria')";
+        $query = "INSERT INTO producto (nombre, tipo_producto, marca, precio_venta, descripcion, modelo, existencia, proveedor, categoria, id_sucursal, estado_venta)
+              VALUES ('$nombre', '$tipo_producto', 'Ernie Ball', '$precio_venta', '$descripcion', '$modelo', '$existencia', '$db_prov', '$categoria', '$db_sucursal', 'en venta')";
 
 
         $result = pg_query($connection, $query);

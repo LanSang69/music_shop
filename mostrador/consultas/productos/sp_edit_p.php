@@ -33,7 +33,14 @@
             'equipB' => 3,
             'takaG' => 4,
         ];
+        $sucursal = $_POST['sucursal'];
+        $sucursalMAP= [
+        'chalco' => 1,
+        'roma' => 2,
+        ];
+        $db_sucursal = $sucursalMAP[$sucursal];
         $db_prov = $proveedorMAP[$proveedor];
+
 
         $query = "UPDATE producto 
                   SET nombre = '$nombre', 
@@ -43,7 +50,8 @@
                       modelo = '$modelo', 
                       existencia = '$existencia', 
                       proveedor = '$db_prov', 
-                      categoria = '$categoria' 
+                      categoria = '$categoria',
+                      id_sucursal = '$db_sucursal' 
                   WHERE id_producto = '$id'";
 
         $result = pg_query($connection, $query);

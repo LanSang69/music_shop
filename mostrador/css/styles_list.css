@@ -33,12 +33,15 @@ h1 {
     justify-content: center;
 }
 
-#search-input {
+#search-input,
+#search-actives,
+#search-inactives {
     padding: 10px;
     width: 500px;
     height: 30px;
     border-radius: 10px;
 }
+
 
 input{
     font-size: 20px;
@@ -126,4 +129,29 @@ table tr td select{
     height: 30px;
     border-radius: 10px;
     font-size: 20px;
+}
+
+select{
+    width: 230px;
+    height: 30px;
+    margin-right: 10px;
+    border-radius: 10px;
+    font-size: 20px;
+}
+
+.page-link {
+    padding: 5px;
+    display: inline-block;
+    margin: 2px; /* Add some margin for better spacing */
+    margin-top: 20px;
+    background-color: white; /* Set the background color to white */
+    border: 1px solid #ccc; /* Add a border for a square container look */
+    border-radius: 3px; /* Optional: Add border-radius for rounded corners */
+    text-decoration: none; /* Remove the default link underline */
+    color: #333; /* Set the text color */
+}
+
+.page-link.active {
+    background-color: #4b0082; /* Set a different background color for the active link */
+    color: white; /* Set the text color for the active link */
 }

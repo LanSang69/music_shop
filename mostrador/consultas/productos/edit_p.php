@@ -17,6 +17,7 @@
         $precio = $_GET['precio'];
         $marca = $_GET['marca'];
         $modelo = $_GET['modelo'];
+        $sucursal = $_GET['sucursal'];
     ?>
     <div class="table-content">
     <div>
@@ -134,6 +135,15 @@
                                 <option value="Baterías">Baterías</option>
                             </select>
                         </td>
+                </tr>
+                <tr>
+                    <td>Sucursal</td>
+                    <td>
+                        <select name="sucursal" required>
+                            <option value="chalco" <?=($sucursal == 'Chalco') ? 'selected' : ''?>>Chalco</option>
+                            <option value="roma" <?=($sucursal == 'Roma') ? 'selected' : ''?>>Roma</option>
+                        </select>
+                    </td>
                 </tr>
             </table>
         <div class="submit-button">
