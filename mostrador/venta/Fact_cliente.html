@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>La Nota Mala - Factura</title>
+  <link rel="stylesheet" href="Fact_cliente.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>La Nota Mala</h1>
+    </header>
+    <main>
+      <h2>Factura (cliente registrado)</h2>
+      <table class="factura">
+        <thead>
+          <tr>
+            <th>Empresa</th>
+            <th>Cliente</th>
+            <th>RFC</th>
+            <th>No. de factura</th>
+            <th>Fecha de emisión</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>La Nota Mala</td>
+            <td><input type="text" id="cliente" placeholder="Nombre del cliente"></td>
+            <td><input type="text" id="rfc" placeholder="RFC del cliente"></td>
+            <td><input type="text" id="numero-factura" placeholder="No. de factura"></td>
+            <td><input type="date" id="fecha-emision" placeholder="Fecha de emisión"></td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <th colspan="4">Total</th>
+            <th id="total-amount">...</th>
+          </tr>
+        </tfoot>
+      </table>
+      <p>
+        Método de pago:
+      </p>
+      
+      
+      <button class="terminar-compra">Terminar Compra</button>
+    </main>
+  </div>
+</body>
+</html>

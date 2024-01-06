@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>La Nota Mala - Pago Efectivo</title>
+    <link rel="stylesheet" href="MetPago_Efec.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>La Nota Mala</h1>
+        </header>
+        <main>
+            <h2>Método de Pago: Efectivo</h2>
+            <div class="payment-details">
+                <h3>Total a pagar:</h3>
+                 <p id="total-amount">100</p>
+                <h3>Recibido:</h3>
+              	<input type="number" id="recibido-input" placeholder="Monto recibido" oninput="calculateChange()">
+                <h3>Cambio:</h3>
+                <span id="cambio-amount">0.00</span>
+                
+                <button class="terminar-compra" disabled>Terminar Compra</button>
+              <button class="generar-factura" disabled>Generar factura</button>
+            </div>
+        </main>
+    </div>
+    <script src="MetPago_Efec.js"></script>
+</body>
+</html>

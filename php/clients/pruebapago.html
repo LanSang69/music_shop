@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interfaz de Pago</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fff; /* Fondo blanco */
+        }
+
+        .payment-form {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #8a2be2; /* Borde de color morado */
+            border-radius: 5px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #8a2be2; /* Borde de color morado */
+        }
+
+        button {
+            background-color: #8a2be2; /* Fondo morado */
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #6a1a9a; /* Cambio de color al pasar el ratón */
+        }
+
+        .datepicker {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #8a2be2;
+            box-sizing: border-box;
+        }
+    </style>
+
+    <!-- Incluye el script del SDK de PayPal -->
+    <script src="https://www.paypal.com/sdk/js?client-id=ATfEzI1g-tCPANH90Uaz2EcVBwIQRzCQuwZhrA6W1a7Env7S2FooVSZWNxf-UjFwK6A9yuPFJW8CgfZM"></script>
+</head>
+<body>
+    <div class="payment-form">
+        <h2>Detalles de Pago</h2>
+        <form id="payment-form">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" required>
+
+            <label for="apellidos">Apellidos:</label>
+            <input type="text" id="apellidos" required>
+
+            <label for="telefono">Teléfono:</label>
+            <input type="tel" id="telefono" required>
+
+            <label for="direccion">Dirección:</label>
+            <input type="text" id="direccion" required>
+
+            <label for="fecha-entrega">Fecha de Entrega:</label>
+            <input type="text" id="fecha-entrega" class="datepicker" required>
+
+            <!-- Contenedor para el botón de PayPal -->
+            <div id="paypal-button-container"></div>
+
+            <!-- Botón para proceder al pago -->
+            <button type="button" onclick="procederAlPago()">Proceder al Pago</button>
+        </form>
+    </div>
+
+    <script>
+        // Renderiza el botón de PayPal
+        paypal.Buttons({
+            createOrder: function(data, actions) {
+                // Aquí puedes definir la lógica para crear la orden en el servidor
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: '1.00' // Puedes ajustar el monto según tus necesidades
+                        }
+                    }]
+                });
+            },
+            onApprove: function(data, actions) {
+                // Aquí puedes definir la lógica cuando el pago es aprobado
+                return actions.order.capture().then(function(details) {
+                    alert('Pago completado por ' + details.payer.name.given_name);
+                });
+            }
+        }).render('#paypal-button-container');
+
+        // Función para proceder al pago (puedes agregar tu lógica aquí)
+        function procederAlPago() {
+            // Aquí puedes agregar la lógica para proceder al pago antes de redirigir a PayPal
+            alert('Procediendo al pago...');
+            // Redirige a la página de PayPal
+            window.location.href = 'https://www.paypal.com';
+        }
+    </script>
+
+    <!-- Agrega el script del mini calendario (datepicker) -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $(function() {
+            // Inicializa el mini calendario (datepicker)
+            $("#fecha-entrega").datepicker();
+        });
+    </script>
+</body>
+</html>
