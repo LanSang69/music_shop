@@ -62,7 +62,7 @@
     }
     ?>
 
-<script>
+    <script>
         // Agregar un evento click al enlace "Volver"
         document.getElementById('volver').addEventListener('click', function (event) {
             event.preventDefault(); // Evitar la acción predeterminada del enlace

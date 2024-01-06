@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>La Nota Mala - Registro de Venta</title>
+    <link rel="stylesheet" href="VentaProd.css">
+    
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>La Nota Mala</h1>
+    </header>
+    <main>
+        <h2>Registro de Venta</h2>
+       <h3>Datos de la Sucursal</h3>
+            <input type="text" name="sucursal_id" placeholder="ID Sucursal" required>
+      <h3>Datos del empleado</h3>
+            <input type="text" name="sucursal_id" placeholder="ID Sucursal" required>
+      
+        <form action="/registro-venta/datos" method="post">
+             <div class="user">
+            <h3>Datos del cliente</h3>
+            <select name="id_cliente" id="id_cliente" onchange="toggleClienteInput()" required>
+                <option value="">Seleccionar cliente</option>
+                <option value="mostrador">Mostrador</option>
+                <option value="otro">Cliente Registrado</option>
+            </select>
+            <input type="text" name="cliente_id" id="cliente_id" placeholder="Id del cliente" style="display: none;">
+        </div>
+  		
+    <title>Barra de Búsqueda</title>
+          <div id="efectivo-details" class="hidden">
+    <form>
+        <label for="metodo">Selecciona el método de búsqueda:</label>
+        <select id="metodo">
+            <option value="Id_cliente">Id_cliente</option>
+            <option value="nombre">Nombre</option>
+            <option value="direccion">Dirección</option>
+            <option value="correo">Correo</option>
+            <option value="celular">Celular</option>
+        </select>
+
+        <br>
+
+        <label for="busqueda">Ingresa el término de búsqueda:</label>
+        <input type="text" id="busqueda">
+
+        <br>
+      <div  class="botones">
+		<button type="button" onclick="buscar()">Volver a Buscar</button>
+        <button type="button" onclick="buscar()">Buscar</button>
+      </div>
+    </form>
+
+    <div id="resultados"></div>
+    </div>
+
+   
+
+            <h3>Producto Vendido</h3>
+            <input type="hidden" name="venta_id" value="">
+            <input type="date" name="fecha_venta" required>
+            <input type="time" name="hora_venta" required>
+
+<!-- Barra de Autocompletar con Cantidad -->
+<!-- Barra de Búsqueda con Tabla -->
+    <div class="search-container">
+        <label for="searchInput">Buscar Producto:</label>
+        <input type="text" id="searchInput" name="searchInput" placeholder="Ingresa un término de búsqueda">
+    <div id="autocomplete-results"></div>
+
+        <table id="product-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Cantidad</th>
+                    <th>Precio Unitario</th>
+                    <th>Subtotal</th>
+                </tr>
+            </thead>
+            <tbody id="table-body">
+                <!-- Filas de la tabla se agregarán dinámicamente aquí -->
+            </tbody>
+        </table>
+    </div>
+    <!-- Fin de Barra de Búsqueda con Tabla -->
+
+    
+<!-- Fin de Barra de Autocompletar con Cantidad -->
+
+
+            <div class="total">
+                <input type="text" class="precio-total" readonly placeholder="Precio Total">
+            </div>
+
+          <select name="metodo_pago" id="id_metodo" required>
+                <option value="">Seleccionar método de pago</option>
+                <option value="efectivo">Efectivo</option>
+                <option value="tarjeta">Tarjeta</option>
+            </select>
+          
+            <button type="button">Continuar</button>
+        </form>
+    </main>
+</div>
+
+<script src="VentaProd.js"></script>
+</body>
+</html>

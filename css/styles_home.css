@@ -21,7 +21,8 @@ body{
 .header{
     display: flex;
     align-items: center;
-    min-height: 80vh;
+    height: 100%;
+    margin-top: 50px;
 }
 
 .swiper-slide{
@@ -59,7 +60,7 @@ body{
 .menu{
     position: fixed;
     background-color: #242430;
-    opacity: 0.8;
+    opacity: 1;
     top: 0;
     left: 0;
     right: 0;
@@ -70,14 +71,27 @@ body{
 }
 
 .logo {
-    font-size: 25px;
+    font-size: 40px;
     color: #7270ec;
     text-transform: uppercase;
     font-weight: 800;
 }
 
+.user{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 25px;
+    color: #7270ec;
+    border-style:solid;
+    border-color: #a9a8e2;
+    border-width: 1px;
+    padding: 10px;
+}
+
 .login {
     font-size: 25px;
+    border-style: solid;
+    border-width: 3px;
+    border-color: #f4f4f4;
     color: #7270ec;
     text-transform: uppercase;
     font-weight: 800;
@@ -96,6 +110,21 @@ body{
 }
 
 .menu .navbar ul li a:hover{
+    color: #7270ec;
+}
+
+.footer-scroll{
+    align-items: right;
+}
+
+.flecha{
+    width: 40px;
+    margin: auto;
+    margin-left: 1820px;
+    margin-top: 15px;
+}
+
+.footer .link .navbar ul li a:hover{
     color: #7270ec;
 }
 
@@ -121,7 +150,7 @@ body{
     right: 0;
     top: 100%;
     z-index: 1;
-    background-color: #4E4B5076;
+    background-color: #000000;
     padding: 20px;
     min-width: 400px;
 }
@@ -132,9 +161,18 @@ body{
     right: 0;
     top: 100%;
     z-index: 1;
-    background-color: #4E4B5076;
+    background-color: #000000;
     padding: 20px;
     min-width: 400px;
+}
+
+table tbody tr td{
+    padding: 10px;
+}
+
+#lista-carrito tbody td {
+    text-align: center;
+    vertical-align: middle;
 }
 
 .tabla{
@@ -237,6 +275,7 @@ hr{
     font-size: 50px;
     color: #FEFFFF;
     margin-bottom: 35px;
+    margin-top: 35px;
 }
 
 .categories{
@@ -325,11 +364,12 @@ hr{
 
 .footer{
     display: flex;
-    padding: 30px 0;
+    padding: 25px;
+    align-items: center;
 }
 
 .link{
-    width: 20%;
+    width: 100%;
 }
 
 .link h3{
@@ -347,6 +387,7 @@ hr{
 .link p{
     color: #747b8f;
     font-size: 16px;
+    text-align: justify;
 }
 
 @media(max-width:991px){
