@@ -170,10 +170,12 @@ session_start();
 
     // Function to handle page change
     function changePage(page) {
+        const selectedA = actives.value;
+        const selectedI = inactives.value;
         const searchAct = searchA.value;
-        const searchInacr = searchI.value;
-        updateContent1(searchAct, page);
-        updateContent2(searchInacr, page);
+        const searchInact = searchI.value;
+        updateContent1(selectedA, searchAct, page);
+        updateContent2(selectedI, searchInact, page);
     }
 
         // Event listener for input change
