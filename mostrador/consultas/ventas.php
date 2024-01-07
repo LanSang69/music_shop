@@ -66,7 +66,7 @@
             </h1>
         </div>
         <div>
-            <a href="add_v.php" class="button">Agregar Venta</a>
+            <a href="../venta/VentaProd.php" class="button">Agregar Venta</a>
             <a href="consult.php" class="button">Hacer una consulta</a>
         </div>
     </div>
