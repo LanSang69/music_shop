@@ -1,7 +1,7 @@
 <?php
 $host = "localhost";
 $port = "5432";  // Default PostgreSQL port
-$dbname = "music_shop";
+$dbname = "notamala";
 $user = "lansan69";
 $password = "LanSan2004*";
 
@@ -10,7 +10,7 @@ $connection = pg_connect("host=$host port=$port dbname=$dbname user=$user passwo
 if ($connection) {
     $result = pg_query($connection, "SELECT id_producto, producto.nombre AS nombre, tipo_producto, 
     marca, precio_venta, descripcion, modelo, existencia, image_url, apartado, proveedor.nombre AS proveedor, 
-    categoria, marca, modelo, descripcion FROM producto JOIN proveedor ON proveedor=proveedor.id ORDER BY id_producto");
+    categoria, marca, modelo, descripcion FROM producto JOIN proveedor ON producto.id_proveedor=proveedor.id_proveedor ORDER BY id_producto");
 
 
 

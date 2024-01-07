@@ -113,8 +113,6 @@ session_start();
         </table>
     </div>
 
-    <div id="pagination-container" class="pagination"></div>
-
     <div class="action-buttons">
         <form action="add_product.php" method="post">
             <button type="submit" class="add-button">Agregar</button>
@@ -173,13 +171,16 @@ function updateContent2(sucursal, searchTerm, page) {
         updateContent2(selectedSucursal, searchTerm, 1); // Reset to page 1 when sucursal changes
     });
 
-// Function to handle page change
-function changePage(page) {
-    const searchAct = searchA.value;
-    const searchInacr = searchI.value;
-    updateContent1(searchAct, page);
-    updateContent2(searchInacr, page);
-}
+    // Function to handle page change
+    function changePage(page) {
+        const selectedA = actives.value;
+        const selectedI = inactives.value;
+        const searchAct = searchA.value;
+        const searchInact = searchI.value;
+        updateContent1(selectedA, searchAct, page);
+        updateContent2(selectedI, searchInact, page);
+    }
+
 
     // Event listener for input change
     searchA.addEventListener('input', function() {
