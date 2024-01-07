@@ -9,16 +9,17 @@ if (isset($_SESSION["puesto"])) {
 
     switch ($id_puesto) {
         case 1:
-            header("Location: ../boss.php");
+            header("Location: consultas/boss.php");
             exit();
         case 2:
-            header("Location: ../gerente.php");
+            header("Location: consultas/gerente.php");
             exit();
-        default:
-            header("Location: ../../login.php");
+        case 3: 
+            header("Location: ../consultas/ventas.php");
             exit();
     }
 } else {
-    header("Location: ../../login.php");
+    // Handle the case when id_puesto is not set
+    header("Location: login.php");
 }
 ?>

@@ -2,25 +2,25 @@
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
 
-$connection = pg_connect("host=localhost port=5432 dbname=music_shop user=lansan69 password=LanSan2004*");
+$connection = pg_connect("host=localhost port=5432 dbname=notamala user=lansan69 password=LanSan2004*");
 
 if ($connection) {
     $sucursal = isset($_GET['sucursal']) ? $_GET['sucursal'] : 'todas';
     $searchTerm = isset($_GET['search']) ? $_GET['search'] : '';
-    $page = isset($_GET['page']) ? $_GET['page'] : 1;
+    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
     $limit = 10;  // Default limit, adjust this to the number of items per page
 
     $offset = ($page - 1) * $limit;
 
     $sql = "SELECT id_producto, producto.nombre AS nombre, tipo_producto, existencia, precio_venta, marca, 
-        modelo, id_sucursal, sucursal.colonia AS sucursal 
+        modelo, producto.id_sucursal AS id_sucursal, sucursal.colonia AS sucursal 
         FROM producto 
-        JOIN sucursal ON id_sucursal = sucursal.id  
+        JOIN sucursal ON producto.id_sucursal = sucursal.id_sucursal  
         WHERE (producto.nombre ILIKE '%$searchTerm%' OR tipo_producto ILIKE '%$searchTerm%')
         AND estado_venta = 'en venta'";
 
     if ($sucursal !== 'todas') {
-        $sql .= " AND id_sucursal = '$sucursal'";
+        $sql .= " AND producto.id_sucursal = '$sucursal'";
     }
 
     $sql .= " ORDER BY id_producto LIMIT $limit OFFSET $offset";

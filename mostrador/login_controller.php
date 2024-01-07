@@ -14,7 +14,8 @@ if ($connection) {
         $usuario = pg_escape_string($_POST["rfc"]);  // Sanitize user input
         $password = pg_escape_string($_POST["password"]);  // Sanitize user input
 
-        $psql = pg_query($connection, "SELECT * FROM empleado WHERE rfc='$usuario' AND password='$password' ");
+        $psql = pg_query($connection, "SELECT id_empleado, empleado.nombre AS nombre, sucursal.id_sucursal AS id_suc, sucursal.colonia AS sucursal, id_puesto FROM empleado 
+        JOIN sucursal ON empleado.id_sucursal = sucursal.id_sucursal WHERE rfc='$usuario' AND password='$password' AND sucursal.id_estado=1");
 
         if (!$psql) {
             die("Error in SQL query: " . pg_last_error());
@@ -24,9 +25,10 @@ if ($connection) {
 
         if ($datos) {
             $id_emp = $datos["id_empleado"];
-            $_SESSION["id"] = $datos["id_empleado"];
+            $_SESSION["id_empleado"] = $datos["id_empleado"];
             $_SESSION["nombre"] = $datos["nombre"];
-            $_SESSION["correo"] = $datos["correo"];
+            $_SESSION["sucursal"] = $datos["sucursal"];
+            $_SESSION["id_sucursal"] = $datos["id_suc"];
             $_SESSION["puesto"] = $datos["id_puesto"];
 
             $permisos = pg_query($connection, "SELECT id_puesto FROM empleado WHERE id_empleado = '$id_emp'");

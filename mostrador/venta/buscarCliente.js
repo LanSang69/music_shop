@@ -1,5 +1,6 @@
     const searchInput = document.getElementById('search-clients');
     const dynamicContentContainer1 = document.getElementById('resultados');
+    const tablaC = document.getElementById('tablaC');
 
 
     function updateContent(searchTerm, page) {
@@ -15,12 +16,22 @@
 
     // Function to handle page change
     function changePage(page) {
-        const searchClients = searchInput.value;
+        const searchClients = document.getElementById('search-clients').value;
         updateContent(searchClients, page);
     }
+
 
     // Event listener for input change
     searchInput.addEventListener('input', function() {
         const searchClients = searchInput.value;
         updateContent(searchClients, 1);
     });
+
+    function clearSearch() {
+        // Get the input element by its ID
+        var searchInput = document.getElementById('search-clients');
+    
+        // Clear the value of the input field
+        searchInput.value = '';
+        updateContent(searchInput.value, 1);
+    }

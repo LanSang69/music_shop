@@ -9,18 +9,17 @@ if ($connection) {
     
     // Check if $busqueda is empty, and if so, do not execute the query
     if (!empty($busqueda)) {
+        
         $page = isset($_GET['page']) ? $_GET['page'] : 1; // Change to $_POST to be consistent with your fetch request
         $limit = 4; // Adjust this to the number of items per page
-
         $offset = ($page - 1) * $limit;
-        $sql = "SELECT cliente.id_cliente AS id, nombre, p_apellido, s_apellido, rfc, colonia, correo, numero FROM cliente 
-        LEFT JOIN telefono ON telefono.id_cliente = cliente.id_cliente 
-        WHERE nombre ILIKE '%$busqueda%' OR p_apellido ILIKE '%$busqueda%' OR correo ILIKE '%$busqueda%'
-        OR s_apellido ILIKE '%$busqueda%' OR rfc ILIKE '%$busqueda%' OR numero ILIKE '%$busqueda%'
-        OR colonia ILIKE '%$busqueda%'";
 
-        $sql .= " ORDER BY cliente.id_cliente
-        LIMIT $limit OFFSET $offset";
+        $sql = "SELECT cliente.id_cliente AS id, nombre, p_apellido, s_apellido, rfc, colonia, calle, correo FROM cliente
+        WHERE nombre ILIKE '%$busqueda%' OR p_apellido ILIKE '%$busqueda%' OR correo ILIKE '%$busqueda%'
+        OR s_apellido ILIKE '%$busqueda%' OR rfc ILIKE '%$busqueda%' OR colonia ILIKE '%$busqueda%' OR 
+        calle ILIKE '%$busqueda%' OR CONCAT(nombre,' ',p_apellido,' ',s_apellido) ILIKE '%$busqueda%'";
+
+        $sql .= " ORDER BY cliente.id_cliente LIMIT $limit OFFSET $offset";
 
         $result = pg_query($connection, $sql);
 
@@ -33,7 +32,7 @@ if ($connection) {
             echo "<td>{$row['correo']}</td>";
             echo "<td>{$row['rfc']}</td>";
             echo "<td>{$row['colonia']}</td>";
-            echo "<td>{$row['numero']}</td>";
+            echo "<td>{$row['calle']}</td>";
             echo "</tr>";
         }
 
@@ -41,7 +40,7 @@ if ($connection) {
         $countSql = "SELECT COUNT(*) FROM cliente 
         JOIN telefono ON telefono.id_cliente = cliente.id_cliente 
         WHERE nombre ILIKE '%$busqueda%' OR p_apellido ILIKE '%$busqueda%' 
-        OR s_apellido ILIKE '%$busqueda%' OR rfc ILIKE '%$busqueda%' OR numero ILIKE '%$busqueda%'
+        OR s_apellido ILIKE '%$busqueda%' OR rfc ILIKE '%$busqueda%'
         OR colonia ILIKE '%$busqueda%'";
             
         $countResult = pg_query($connection, $countSql);

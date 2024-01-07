@@ -19,7 +19,6 @@ if (isset($_SESSION["puesto"])) {
             exit();
     }
 } else {
-    // Handle the case when id_puesto is not set
-    echo "Error: id_puesto is not set.";
+    header("Location: ../../login.php");
 }
 ?>
