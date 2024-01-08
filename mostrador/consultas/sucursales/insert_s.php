@@ -17,9 +17,12 @@
     $connection = pg_connect("host=$host port=$port dbname=$dbname user=$user password=$password");
     if($connection){
         $nombre = $_POST['nombre'];
-        $colonia = $_POST['colonia'];
-        $ciudad = $_POST['ciudad'];
         $cp = $_POST['cp'];
+        $municipio = $_POST['municipio'];
+        $asentamiento = $_POST['asentamiento'];
+        $t_asen = $_POST['t_asentamiento'];
+        $calle = $_POST['calle'];
+        $numero = $_POST['numero'];
         $estado = $_POST['estado'];
         $estadoMAP= [
             'activa' => 1,
@@ -27,8 +30,9 @@
             ];
         $db_estado = $estadoMAP[$estado];
 
-        $query = "INSERT INTO sucursal (nombre, colonia, ciudad, codigo_postal, id_estado)
-              VALUES ('$nombre', '$colonia', '$ciudad', $cp, '$db_estado')";
+        $query = "INSERT INTO sucursal (nombre, codigo_postal, municipio,
+         asentamiento, tipo_asentamiento, calle, calle_numero, id_estado)
+        VALUES ('$nombre', '$cp', '$municipio', '$asentamiento', '$t_asen', '$calle', '$numero', '$db_estado')";
 
 
         $result = pg_query($connection, $query);

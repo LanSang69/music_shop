@@ -8,7 +8,7 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Empleados</title>
+    <title>Sucursales</title>
     <link rel="stylesheet" type="text/css" href="../../css/styles_list.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
@@ -37,9 +37,12 @@ session_start();
             <thead>
             <tr>
                 <td>Nombre</td>
-                <td>Colonia</td>
-                <td>Ciudad</td>
                 <td>Código postal</td>
+                <td>Municipio</td>
+                <td>Asentamiento</td>
+                <td>Tipo asentamiento</td>
+                <td>Calle</td>
+                <td>Número</td>
                 <td>Estado</td>
                 <td>Opciones</td>
             </tr>
@@ -81,9 +84,12 @@ session_start();
             <thead>
                 <tr>
                 <td>Nombre</td>
-                <td>Colonia</td>
-                <td>Ciudad</td>
                 <td>Código postal</td>
+                <td>Municipio</td>
+                <td>Asentamiento</td>
+                <td>Tipo asentamiento</td>
+                <td>Calle</td>
+                <td>Número</td>
                 <td>Estado</td>
                 <td>Opciones</td>
             </tr>
@@ -98,7 +104,7 @@ session_start();
             <button type="submit" class="add-button">Agregar</button>
         </form>
         <button class="modify-button" onclick="modifySucursal()">Modificar</button>
-        <button class="delete-button" onclick="deleteSucursal()">Cerrar</button>
+        <button class="delete-button" onclick="openSucursal()">Abrir</button>
     </div>
 
 

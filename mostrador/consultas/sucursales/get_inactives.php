@@ -10,9 +10,15 @@ if ($connection) {
     $limit = 10; // Adjust this to the number of items per page
 
     $offset = ($page - 1) * $limit;
-    $sql = "SELECT id_sucursal, nombre, colonia, ciudad, codigo_postal, sucursal.id_estado, estado_sucursal.estado AS estado 
-    FROM sucursal JOIN estado_sucursal ON estado_sucursal.id_estado = sucursal.id_estado WHERE 
-    (nombre ILIKE '%$busqueda%' OR colonia ILIKE '%$busqueda%' OR ciudad ILIKE '%$busqueda%') AND sucursal.id_estado = 2";
+    $sql = "SELECT id_sucursal, nombre, codigo_postal, municipio, asentamiento, tipo_asentamiento, calle, calle_numero, sucursal.id_estado, estado_sucursal.estado AS estado 
+    FROM sucursal 
+    JOIN estado_sucursal ON estado_sucursal.id_estado = sucursal.id_estado 
+    WHERE 
+        (nombre ILIKE '%$busqueda%' 
+        OR municipio ILIKE '%$busqueda%' 
+        OR asentamiento ILIKE '%$busqueda%'
+        OR CAST(codigo_postal AS TEXT) ILIKE '%$busqueda%') 
+        AND sucursal.id_estado = 2";
 
     $sql .= " ORDER BY id_sucursal
     LIMIT $limit OFFSET $offset";
@@ -22,9 +28,12 @@ if ($connection) {
     while ($row = pg_fetch_assoc($result)) {
         echo "<tr>";
         echo "<td>{$row['nombre']}</td>";
-        echo "<td>{$row['colonia']}</td>";
-        echo "<td>{$row['ciudad']}</td>";
         echo "<td>{$row['codigo_postal']}</td>";
+        echo "<td>{$row['municipio']}</td>";
+        echo "<td>{$row['asentamiento']}</td>";
+        echo "<td>{$row['tipo_asentamiento']}</td>";
+        echo "<td>{$row['calle']}</td>";
+        echo "<td>{$row['calle_numero']}</td>";
         echo "<td>{$row['estado']}</td>";
         echo "<td><input type='radio' name='selectedItem' value='{$row['id_sucursal']}'></td>";
         echo "</tr>";
@@ -33,9 +42,13 @@ if ($connection) {
     
 
     // Fetch total number of records for pagination
-    $countSql = "SELECT COUNT(*) FROM sucursal 
-        WHERE (nombre ILIKE '%$busqueda%' OR colonia ILIKE '%$busqueda%' 
-        OR ciudad ILIKE '%$busqueda%') AND sucursal.id_estado = 1";
+    $countSql = "SELECT COUNT(*) FROM sucursal JOIN estado_sucursal ON estado_sucursal.id_estado = sucursal.id_estado
+      WHERE 
+        (nombre ILIKE '%$busqueda%' 
+        OR municipio ILIKE '%$busqueda%' 
+        OR asentamiento ILIKE '%$busqueda%'
+        OR CAST(codigo_postal AS TEXT) ILIKE '%$busqueda%') 
+        AND sucursal.id_estado = 2";
         
     $countResult = pg_query($connection, $countSql);
     $rowCount = pg_fetch_row($countResult)[0];

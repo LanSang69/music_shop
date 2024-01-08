@@ -1,26 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modificar sucursal</title>
+    <title>Actualizar sucursal</title>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
+
 <body>
-<?php
+    <?php
     $host = "localhost";
     $port = "5432";  // Default PostgreSQL port
     $dbname = "notamala";
     $user = "lansan69";
     $password = "LanSan2004*";
-    
+
     $connection = pg_connect("host=$host port=$port dbname=$dbname user=$user password=$password");
     if ($connection) {
-        $id_sucursal = $_POST['id']; // Assuming you have an input field for the id_sucursal
+        $id = $_POST['id']; // Assuming you are passing the ID through a hidden field in your form
         $nombre = $_POST['nombre'];
-        $colonia = $_POST['colonia'];
-        $ciudad = $_POST['ciudad'];
         $cp = $_POST['cp'];
+        $municipio = $_POST['municipio'];
+        $asentamiento = $_POST['asentamiento'];
+        $t_asen = $_POST['t_asentamiento'];
+        $calle = $_POST['calle'];
+        $numero = $_POST['numero'];
         $estado = $_POST['estado'];
         $estadoMAP = [
             'activa' => 1,
@@ -29,8 +34,15 @@
         $db_estado = $estadoMAP[$estado];
 
         $query = "UPDATE sucursal 
-                  SET nombre = '$nombre', colonia = '$colonia', ciudad = '$ciudad', codigo_postal = $cp, id_estado = '$db_estado'
-                  WHERE id_sucursal = $id_sucursal";
+                  SET nombre = '$nombre', 
+                      codigo_postal = '$cp', 
+                      municipio = '$municipio', 
+                      asentamiento = '$asentamiento', 
+                      tipo_asentamiento = '$t_asen', 
+                      calle = '$calle', 
+                      calle_numero = '$numero', 
+                      id_estado = '$db_estado' 
+                  WHERE id_sucursal = $id";
 
         $result = pg_query($connection, $query);
 
@@ -38,7 +50,7 @@
             echo "<script>
             Swal.fire({
                 icon: 'success',
-                title: 'Sucursal " . $nombre . " modificada con éxito',
+                title: 'Sucursal actualizada con éxito',
                 confirmButtonText: 'OK'
             }).then(function () {
                 window.location.href = 'consult_sucursal.php';
@@ -50,7 +62,7 @@
                 if (typeof Swal !== 'undefined' && Swal.fire) {
                     Swal.fire({
                         icon: 'error',
-                        title: 'Error al modificar sucursal',
+                        title: 'Error al actualizar sucursal',
                         text: $error_message,
                         confirmButtonText: 'OK'
                     }).then(function () {
@@ -62,6 +74,7 @@
               </script>";
         }
     }
-?>
+    ?>
 </body>
+
 </html>
