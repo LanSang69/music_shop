@@ -13,7 +13,7 @@ if ($connection) {
     $offset = ($page - 1) * $limit;
 
     $sql = "SELECT id_producto, producto.nombre AS nombre, tipo_producto, existencia, precio_venta, marca, 
-        modelo, producto.id_sucursal AS id_sucursal, sucursal.colonia AS sucursal 
+        modelo, producto.id_sucursal AS id_sucursal, sucursal.municipio AS sucursal 
         FROM producto 
         JOIN sucursal ON producto.id_sucursal = sucursal.id_sucursal  
         WHERE (producto.nombre ILIKE '%$searchTerm%' OR tipo_producto ILIKE '%$searchTerm%')

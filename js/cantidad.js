@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
             // Update quantity based on button clicked
             if (event.target.classList.contains('mas')) {
                 quantity++;
-            } else if (event.target.classList.contains('menos') && quantity > 0) {
+            } else if (event.target.classList.contains('menos') && quantity >= 0) {
                 quantity--;
             }
 
@@ -32,6 +32,11 @@ document.addEventListener('DOMContentLoaded', function () {
             const existingCartItemIndex = cartItems.findIndex(item => item.id === productId);
             if (existingCartItemIndex !== -1) {
                 cartItems[existingCartItemIndex].cantidad = quantity;
+
+                // Remove the item from local storage if quantity is 0
+                if (quantity <= 0) {
+                    cartItems.splice(existingCartItemIndex, 1);
+                }
             } else {
                 console.error('Item not found in cartItems array');
             }

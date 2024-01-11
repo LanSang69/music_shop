@@ -105,68 +105,76 @@ function enviarDatosAlServidor(infoElemento) {
 }
 
 function insertarCarrito(elemento) {
-    const existingRow = document.getElementById(`${elemento.id}`);
+    if(elemento.cantidad > 0){
 
-    if (existingRow) {
-        // If the item is already in the cart, update the quantity visually
-        const quantityElement = existingRow.querySelector('.cantidad');
-
-        // Check if the quantity element is found before updating
-        if (quantityElement) {
-            let currentQuantity = parseInt(quantityElement.textContent);
-            currentQuantity++;
-            elemento.cantidad = currentQuantity;
-            quantityElement.textContent = currentQuantity;
-
-            // Update the quantity in the cartItems array
-            const existingCartItemIndex = cartItems.findIndex((item) => item.id === elemento.id);
-            if (existingCartItemIndex !== -1) {
-                cartItems[existingCartItemIndex].cantidad = currentQuantity;
-                localStorage.setItem('cartData', JSON.stringify(cartItems)); // Save the updated array
-                eliminarElementoServidor(elemento.id);
-                enviarDatosAlServidor(elemento);
+        const existingRow = document.getElementById(`${elemento.id}`);
+    
+        if (existingRow) {
+            // If the item is already in the cart, update the quantity visually
+            const quantityElement = existingRow.querySelector('.cantidad');
+    
+            // Check if the quantity element is found before updating
+            if (quantityElement) {
+                let currentQuantity = parseInt(quantityElement.textContent);
+                currentQuantity++;
+                elemento.cantidad = currentQuantity;
+                quantityElement.textContent = currentQuantity;
+    
+                // Update the quantity in the cartItems array
+                const existingCartItemIndex = cartItems.findIndex((item) => item.id === elemento.id);
+                if (existingCartItemIndex !== -1) {
+                    cartItems[existingCartItemIndex].cantidad = currentQuantity;
+                    localStorage.setItem('cartData', JSON.stringify(cartItems)); // Save the updated array
+                    eliminarElementoServidor(elemento.id);
+                    enviarDatosAlServidor(elemento);
+                } else {
+                    console.error('Item not found in cartItems array:', elemento);
+                }
+    
             } else {
-                console.error('Item not found in cartItems array:', elemento);
+                console.error('Quantity element not found for existing row:', existingRow);
             }
-
         } else {
-            console.error('Quantity element not found for existing row:', existingRow);
+            // If the item is not in the cart, add a new row
+            const row = document.createElement('tr');
+            row.id = `${elemento.id}`;
+            row.innerHTML = `
+                <td>
+                    <img src="${elemento.imagen}" width=100 >
+                </td>
+                <td>
+                    ${elemento.titulo}
+                </td>
+                <td>
+                    $${elemento.precio}
+                </td>
+                <td class="cantidad" id="cantidad-${elemento.id}">${elemento.cantidad}</td> <!-- Add the "cantidad" class here -->
+                <td>
+                    <a href="#" class="borrar" data-id="${elemento.id}">X</a>
+                </td>
+            `;
+    
+            lista.appendChild(row);
+    
+            // Check if the item is already in the cartItems array before pushing
+            const isItemInCart = cartItems.some((item) => item.id === elemento.id);
+    
+            if (!isItemInCart) {
+                cartItems.push(elemento);
+                localStorage.setItem('cartData', JSON.stringify(cartItems));
+            }
+            
+            enviarDatosAlServidor(elemento);
+            
         }
-    } else {
-        // If the item is not in the cart, add a new row
-        const row = document.createElement('tr');
-        row.id = `${elemento.id}`;
-        row.innerHTML = `
-            <td>
-                <img src="${elemento.imagen}" width=100 >
-            </td>
-            <td>
-                ${elemento.titulo}
-            </td>
-            <td>
-                $${elemento.precio}
-            </td>
-            <td class="cantidad" id="cantidad-${elemento.id}">${elemento.cantidad}</td> <!-- Add the "cantidad" class here -->
-            <td>
-                <a href="#" class="borrar" data-id="${elemento.id}">X</a>
-            </td>
-        `;
-
-        lista.appendChild(row);
-
-        // Check if the item is already in the cartItems array before pushing
-        const isItemInCart = cartItems.some((item) => item.id === elemento.id);
-
-        if (!isItemInCart) {
-            cartItems.push(elemento);
-            localStorage.setItem('cartData', JSON.stringify(cartItems));
-        }
-        
-        enviarDatosAlServidor(elemento);
-        
+    
+    }else{
+        console.log("ELiminando de servidor");
+        eliminarElementoServidor(elemento);
     }
 
     updateCartCount(); // Update the cart count
+
 }
 
 

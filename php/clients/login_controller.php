@@ -3,7 +3,7 @@ session_start();
 
 $host = "localhost";
 $port = "5432";  // Default PostgreSQL port
-$dbname = "music_shop";
+$dbname = "notamala";
 $user = "lansan69";
 $passwordDB = "LanSan2004*";
 
@@ -18,7 +18,7 @@ if ($connection) {
         $datos = pg_fetch_assoc($psql);
 
         if ($datos) {
-            $_SESSION["id"] = $datos["id"];
+            $_SESSION["id_cliente"] = $datos["id_cliente"];
             $_SESSION["nombre"] = $datos["nombre"];
             $_SESSION["correo"] = $datos["correo"];
             header("Location: home_log.php");

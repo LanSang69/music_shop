@@ -53,7 +53,7 @@ session_start();
             </div>
 
             <div class="categorie">
-                <a href="#" class="agregar-carrito btn-3" id="terminar_compra">Proceder con la compra</a>
+                <a href="pago.php" class="agregar-carrito btn-3" id="terminar_compra">Proceder con la compra</a>
             </div>
 
         </div>

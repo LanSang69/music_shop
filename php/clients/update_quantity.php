@@ -10,16 +10,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id']) && isset($_POST
         $productIndex = array_search($productId, array_column($_SESSION['cart_data'], 'id'));
 
         if ($productIndex !== false) {
-            // If the product is found, update the quantity
-            $_SESSION['cart_data'][$productIndex]['cantidad'] = $newQuantity;
+            // Check if the new quantity is greater than 0
+            if ($newQuantity > 0) {
+                // If the product is found and quantity is greater than 0, update the quantity
+                $_SESSION['cart_data'][$productIndex]['cantidad'] = $newQuantity;
 
-            // Recalculate the sum in the session
-            $_SESSION['sum'] = 0;
-            foreach ($_SESSION['cart_data'] as $product) {
-                $_SESSION['sum'] += $product['precio'] * $product['cantidad'];
+                // Recalculate the sum in the session
+                $_SESSION['sum'] = 0;
+                foreach ($_SESSION['cart_data'] as $product) {
+                    $_SESSION['sum'] += $product['precio'] * $product['cantidad'];
+                }
+
+                echo "Quantity updated successfully";
+            } else {
+                // If the new quantity is 0, remove the product from cart_data
+                unset($_SESSION['cart_data'][$productIndex]);
+
+                // Recalculate the sum in the session
+                $_SESSION['sum'] = 0;
+                foreach ($_SESSION['cart_data'] as $product) {
+                    $_SESSION['sum'] += $product['precio'] * $product['cantidad'];
+                }
+
+                echo "Product removed from the cart";
             }
-
-            echo "Quantity updated successfully";
         } else {
             // If the product is not found, you may choose to handle this case
             echo "Product not found in the cart";
@@ -32,4 +46,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id']) && isset($_POST
     // Handle errors or invalid requests here
     echo "Invalid request";
 }
+
 ?>

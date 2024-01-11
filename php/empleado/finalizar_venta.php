@@ -2,7 +2,7 @@
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['totalPrice'])) {
     $host = "localhost";
     $port = "5432";  // Default PostgreSQL port
-    $dbname = "music_shop";
+    $dbname = "notamala";
     $user = "lansan69";
     $password = "LanSan2004*";
 

@@ -11,7 +11,7 @@
         }
 
         .payment-form {
-            max-width: 400px;
+            max-width: 600px; /* Ajusta el ancho máximo según tus necesidades */
             margin: 50px auto;
             padding: 20px;
             border: 1px solid #8a2be2; /* Borde de color morado */
@@ -50,66 +50,88 @@
             border: 1px solid #8a2be2;
             box-sizing: border-box;
         }
+
+        #paypal-button-container {
+            margin-top: 15px;
+        }
+
+        #datos-correctos {
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        #datos-correctos input {
+            margin-right: 5px;
+        }
     </style>
 
     <!-- Incluye el script del SDK de PayPal -->
+    <script src:="https://sandbox.paypal.com"></script>
     <script src="https://www.paypal.com/sdk/js?client-id=ATfEzI1g-tCPANH90Uaz2EcVBwIQRzCQuwZhrA6W1a7Env7S2FooVSZWNxf-UjFwK6A9yuPFJW8CgfZM"></script>
 </head>
 <body>
     <div class="payment-form">
         <h2>Detalles de Pago</h2>
         <form id="payment-form">
-            <label for="nombre">Nombre:</label>
-            <input type="text" id="nombre" required>
+            <label for="fecha-entrega">Fecha de Pago:</label>
+            <input type="text" id="fecha-entrega" class="datepicker" value="2023-12-21" readonly required>
+            <!-- Establece la fecha por defecto y deshabilita la interactividad del campo -->
+            
+            <label for="hora-pago">Hora de Pago:</label>
+            <input type="time" id="hora-pago" value="" required>
+            <!-- Campo de hora que muestra la hora actual -->
 
-            <label for="apellidos">Apellidos:</label>
-            <input type="text" id="apellidos" required>
+            <label for="monto-pago">Monto de Pago:</label>
+            <input type="text" id="monto-pago" required>
 
-            <label for="telefono">Teléfono:</label>
-            <input type="tel" id="telefono" required>
-
-            <label for="direccion">Dirección:</label>
-            <input type="text" id="direccion" required>
-
-            <label for="fecha-entrega">Fecha de Entrega:</label>
-            <input type="text" id="fecha-entrega" class="datepicker" required>
-
-            <!-- Contenedor para el botón de PayPal -->
-            <div id="paypal-button-container"></div>
-
-            <!-- Botón para proceder al pago -->
-            <button type="button" onclick="procederAlPago()">Proceder al Pago</button>
+            <div id="paypal-button-container">
+                <!-- Renderiza el botón de PayPal -->
+            </div>
         </form>
     </div>
 
     <script>
         // Renderiza el botón de PayPal
-        paypal.Buttons({
+        var paypalButtons = paypal.Buttons({
             createOrder: function(data, actions) {
                 // Aquí puedes definir la lógica para crear la orden en el servidor
                 return actions.order.create({
                     purchase_units: [{
                         amount: {
-                            value: '1.00' // Puedes ajustar el monto según tus necesidades
+                            value: document.getElementById('monto-pago').value || '234.00'
+                            
                         }
                     }]
+                });
+                return actions.order.capture().then(function(details) {
+                    alert('Pago completado por: ,       ' + details.payer.name.given_name + 'numero de Transaccion: 34567829393929');
                 });
             },
             onApprove: function(data, actions) {
                 // Aquí puedes definir la lógica cuando el pago es aprobado
                 return actions.order.capture().then(function(details) {
-                    alert('Pago completado por ' + details.payer.name.given_name);
+                    alert('Pago completado por: ,       ' + details.payer.name.given_name + 'numero de Transaccion: 65463543456789');
                 });
             }
-        }).render('#paypal-button-container');
+        });
 
-        // Función para proceder al pago (puedes agregar tu lógica aquí)
-        function procederAlPago() {
-            // Aquí puedes agregar la lógica para proceder al pago antes de redirigir a PayPal
-            alert('Procediendo al pago...');
-            // Redirige a la página de PayPal
-            window.location.href = 'https://www.paypal.com';
+        paypalButtons.render('#paypal-button-container');
+
+        // Función para obtener la hora actual y establecerla en el campo de hora
+        function obtenerHoraActual() {
+            var horaActual = new Date().toLocaleTimeString('en-US', {hour12: false});
+            document.getElementById('hora-pago').value = horaActual;
         }
+
+        // Llama a la función para obtener la hora actual cuando se carga la página
+        obtenerHoraActual();
+
+        // Habilita o deshabilita los botones de PayPal según el estado del checkbox
+        document.getElementById('check-datos-correctos').addEventListener('change', function() {
+            var habilitarBotones = this.checked;
+            paypalButtons.enable(habilitarBotones);
+        });
     </script>
 
     <!-- Agrega el script del mini calendario (datepicker) -->
